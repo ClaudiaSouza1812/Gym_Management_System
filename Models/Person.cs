@@ -7,7 +7,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
 {
     public abstract class Person : Interfaces.IPerson
     {
-        #region Properties
+        #region Scalar Properties
         [Required(ErrorMessage = "The field 'Name' is mandatory.")]
         [Column(TypeName = "nvarchar")]
         [StringLength(30, ErrorMessage = "Limit of 30 characters")]
@@ -29,7 +29,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
         [Required(ErrorMessage = "The field 'Birth Date' is mandatory.")]
         [Column(TypeName = "date")]
         [DisplayName("Birth Date")]
-        public DateOnly BirthDate { get; set; }
+        public DateTime BirthDate { get; set; }
 
         [Required(ErrorMessage = "The field 'Email' is mandatory.")]
         [Column(TypeName = "nvarchar")]
@@ -61,11 +61,14 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
         [StringLength(50, ErrorMessage = "Limit of 50 characters.")]
         [DisplayName("Country")]
         public string Country { get; set; }
+
+        public string FullName => $"{FirstName} {LastName}";
+
         #endregion
 
         #region Constructors
 
-        public Person(string firstName, string lastName, string nif, DateOnly birthDate, string email, string phoneNumber, string address, string postalCode, string city, string country)
+        public Person(string firstName, string lastName, string nif, DateTime birthDate, string email, string phoneNumber, string address, string postalCode, string city, string country)
         {             
             FirstName = firstName;
             LastName = lastName;

@@ -11,7 +11,9 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
     {
         #region Scalar Properties
         [Key]
+        [DisplayName("Client ID")]
         public int ClientID { get; set; }
+        public int NextID = 1;
 
         [Required(ErrorMessage = "The field 'Status' is mandatory.")]
         [Column(TypeName = "nvarchar")]
@@ -21,8 +23,9 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
         #endregion
 
         #region Constructor
-        public Client(string firstName, string lastName, string nif, DateOnly birthDate, string email, string phoneNumber, string address, string postalCode, string city, string country, EnumClientStatus status) : base(firstName, lastName, nif, birthDate, email, phoneNumber, address, postalCode, city, country)
+        public Client(string firstName, string lastName, string nif, DateTime birthDate, string email, string phoneNumber, string address, string postalCode, string city, string country, EnumClientStatus status) : base(firstName, lastName, nif, birthDate, email, phoneNumber, address, postalCode, city, country)
         {
+            ClientID = NextID++;
             Status = status;
         }
         #endregion
