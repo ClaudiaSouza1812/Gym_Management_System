@@ -25,13 +25,14 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
 
         [Required(ErrorMessage = "Payment Date is required")]
         [Column(TypeName = "date")]
-
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         [DisplayName("Payment Date")]
         public DateTime PaymentDate { get; set; }
         #endregion
 
         #region Navigation Properties
         // Relationship: Payment N - 1 Client
+        [ForeignKey("Client")]
         public int ClientID { get; set; }
         public virtual Client Client { get; set; }
         #endregion

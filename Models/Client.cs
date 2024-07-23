@@ -23,8 +23,8 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
         #region Navigation Properties
         // Relationship: Client 1 - N Payment
         // Relationship: Client 1 - N Membership
-        public virtual ICollection<Payment> Payments { get; set; } = new List<Payment>();
-        public virtual ICollection<Membership> Memberships { get; set; } = new List<Membership>();
+        public virtual HashSet<Payment> Payments { get; set; }
+        public virtual HashSet<Membership> Memberships { get; set; } = new HashSet<Membership>();
 
         #endregion
 
