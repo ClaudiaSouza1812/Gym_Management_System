@@ -2,14 +2,18 @@
 
 namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models.Interfaces
 {
-    public interface IContract
+    public interface IMembership
     {
         #region Scalar Properties
-        public int ContractID { get; set; }
-        public string Terms { get; set; } 
+        public int MembershipID { get; set; }
+        public int ClientID { get; set; }
+        public EnumMembershipType MembershipType { get; set; }
+        public bool IsLoyal { get; set; }
+        public decimal Discount { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         #endregion
 
+        
     }
 }

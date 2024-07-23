@@ -16,25 +16,24 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
 
         [Required(ErrorMessage = "The field 'Status' is mandatory.")]
         [Column(TypeName = "nvarchar")]
-        [StringLength(3, ErrorMessage = "Limit of 3 characters, e.g. 'yes' or 'no'")]
-        [DisplayName("Status")]
+        [DisplayName("Client Status")]
         public EnumClientStatus Status { get; set; }
         #endregion
 
-        #region Constructor
-        public Client(string firstName, string lastName, string nif, DateTime birthDate, string email, string phoneNumber, string address, string postalCode, string city, string country, EnumClientStatus status) : base(firstName, lastName, nif, birthDate, email, phoneNumber, address, postalCode, city, country)
-        {
-            Status = status;
-        }
+        #region Navigation Properties
+        // Relationship: Client 1 - N Payment
+        // Relationship: Client 1 - N Membership
+        public virtual ICollection<Payment> Payments { get; set; } = new List<Payment>();
+        public virtual ICollection<Membership> Memberships { get; set; } = new List<Membership>();
+
         #endregion
 
-        
-        #region Navigation Properties
-        // Relationship: Client 1 - N Contract
-        // Relationship: Client 1 - N Membership
-        ICollection<Contract> Contracts { get; set; }
-        ICollection<Membership> Memberships { get; set; }
-
+        #region Constructors
+        public Client()
+        {
+            Payments = new HashSet<Payment>();
+            Memberships = new HashSet<Membership>();
+        }
         #endregion
 
     }

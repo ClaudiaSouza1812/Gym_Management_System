@@ -5,24 +5,29 @@ using P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Enums;
 
 namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
 {
-    public class Contract : Interfaces.IContract
+    public class Membership : Interfaces.IMembership
     {
         #region Scalar Properties
         [Key]
-        [DisplayName("Contract ID")]
-        public int ContractID { get; set; }
+        [DisplayName("Membership ID")]
+        public int MembershipID { get; set; }
 
         [ForeignKey("Client")]
         public int ClientID { get; set; }
 
-        [ForeignKey("Membership ID")]
-        public int MembershipID { get; set; }
-
-        [Required(ErrorMessage = "The field 'Terms' is mandatory.")]
+        [Required(ErrorMessage = "The field 'Membership Type' is mandatory.")]
         [Column(TypeName = "nvarchar")]
-        [StringLength(100, ErrorMessage = "Limit of 100 characters.")]
-        [DisplayName("Terms and Conditions")]
-        public string Terms { get; set; }
+        [DisplayName("Membership Type")]
+        public EnumMembershipType MembershipType { get; set; }
+
+        [Required(ErrorMessage = "The field 'Loyal Member' is mandatory.")]
+        [Column(TypeName = "bit")]
+        [DisplayName("Loyal Member")]
+        public bool IsLoyal { get; set; }
+
+        [Required(ErrorMessage = "The field 'Discount' is mandatory.")]
+        [Column(TypeName = "decimal(5,2)")]
+        public decimal Discount { get; set; }
 
         [Required(ErrorMessage = "The field 'Start Date' is mandatory.")]
         [Column(TypeName = "date")]
@@ -36,23 +41,21 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
         #endregion
 
         #region Navigation Properties
-
+        // Relationship: Membership N - 1 Client
+        // Relationship: Membership N - N GymModality
         public Client Client { get; set; }
-        public Membership Membership { get; set; }
+        ICollection<GymModality> GymModalities { get; set; }
 
-        
         #endregion
-        
-        #region Constructor
-        public Contract(string terms, DateTime startDate, DateTime endDate, Client client)
+
+        #region Constructors
+        public Membership()
         {
-            Terms = terms;
-            StartDate = startDate;
-            EndDate = endDate;
-            Client.ClientID = client.ClientID;
-            Client.FirstName = client.FullName;
+            GymModalities = new HashSet<GymModality>();
         }
         #endregion
+
+        
         
     }
 }

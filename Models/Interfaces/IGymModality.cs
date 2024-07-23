@@ -2,12 +2,11 @@
 
 namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models.Interfaces
 {
-    public interface IClient : IPerson
+    public interface IGymModality
     {
         #region Scalar Properties
-        public int ClientID { get; set; }
-        public EnumClientStatus Status { get; set; }
+        public int ModalityID { get; set; }
+        public EnumModalityType ModalityType { get; set; }
         #endregion
-
     }
 }
