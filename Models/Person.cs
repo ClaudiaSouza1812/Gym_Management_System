@@ -8,6 +8,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
     public abstract class Person : Interfaces.IPerson
     {
         #region Scalar Properties
+
         [Required(ErrorMessage = "The field 'Name' is mandatory.")]
         [Column(TypeName = "nvarchar")]
         [StringLength(30, ErrorMessage = "Limit of 30 characters")]
@@ -62,6 +63,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
         [DisplayName("Country")]
         public string Country { get; set; }
 
+        // Computed Property
         public string FullName => $"{FirstName} {LastName}";
 
         #endregion

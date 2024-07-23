@@ -40,6 +40,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
         [ForeignKey("Client")]
         public int ClientID { get; set; }
         public virtual Client Client { get; set; }
+
         [ForeignKey("Membership")]
         public int MembershipID { get; set; }
         public virtual Membership Membership { get; set; }
@@ -53,11 +54,12 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
             PaymentDate = DateTime.UtcNow;
         }
 
-        public Payment(EnumPaymentType paymentType, decimal paymentValue, int clientId) : this()
+        public Payment(EnumPaymentType paymentType, decimal paymentValue, int clientId, int membershipId) : this()
         {
             PaymentType = paymentType;
             PaymentValue = paymentValue;
             ClientID = clientId;
+            MembershipID = membershipId;
         }
 
         #endregion

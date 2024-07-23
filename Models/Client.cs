@@ -11,6 +11,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
     {
         
         #region Scalar Properties
+
         [Key]
         [DisplayName("Client ID")]
         public int ClientID { get; set; }
@@ -19,9 +20,11 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
         [Column(TypeName = "nvarchar")]
         [DisplayName("Client Status")]
         public EnumClientStatus Status { get; set; }
+
         #endregion
 
         #region Navigation Properties
+
         // Relationship: Client 1 - N Payment
         // Relationship: Client 1 - N Membership
         public virtual ICollection<Payment> Payments { get; set; } = new HashSet<Payment>();
@@ -30,10 +33,12 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
         #endregion
 
         #region MyRegion
+
         public Client(string firstName, string lastName, string nif, DateTime birthDate, string email, string phoneNumber, string address, string postalCode, string city, string country, EnumClientStatus status) : base(firstName, lastName, nif, birthDate, email, phoneNumber, address, postalCode, city, country)
         {
             Status = status;
         }
+
         #endregion
 
     }
