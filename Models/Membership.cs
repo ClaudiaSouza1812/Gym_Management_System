@@ -43,6 +43,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
         #region Navigation Properties
         // Relationship: Membership N - 1 Client
         // Relationship: Membership N - N GymModality
+        [ForeignKey("Client")]
         public Client Client { get; set; }
         ICollection<GymModality> GymModalities { get; set; }
 
