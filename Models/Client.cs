@@ -13,7 +13,6 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
         [Key]
         [DisplayName("Client ID")]
         public int ClientID { get; set; }
-        public int NextID = 1;
 
         [Required(ErrorMessage = "The field 'Status' is mandatory.")]
         [Column(TypeName = "nvarchar")]
@@ -25,14 +24,16 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
         #region Constructor
         public Client(string firstName, string lastName, string nif, DateTime birthDate, string email, string phoneNumber, string address, string postalCode, string city, string country, EnumClientStatus status) : base(firstName, lastName, nif, birthDate, email, phoneNumber, address, postalCode, city, country)
         {
-            ClientID = NextID++;
             Status = status;
         }
         #endregion
 
-        // ToDo: Add Navigation Properties
+        
         #region Navigation Properties
-
+        // Relationship: Client 1 - N Contract
+        // Relationship: Client 1 - N Membership
+        ICollection<Contract> Contracts { get; set; }
+        ICollection<Membership> Memberships { get; set; }
 
         #endregion
 

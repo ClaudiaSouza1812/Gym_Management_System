@@ -9,13 +9,29 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
     {
         #region Scalar Properties
         [Key]
+        [DisplayName("Contract ID")]
         public int ContractID { get; set; }
 
         [ForeignKey("Client")]
         public int ClientID { get; set; }
+
+        [ForeignKey("Membership ID")]
         public int MembershipID { get; set; }
+
+        [Required(ErrorMessage = "The field 'Terms' is mandatory.")]
+        [Column(TypeName = "nvarchar")]
+        [StringLength(100, ErrorMessage = "Limit of 100 characters.")]
+        [DisplayName("Terms and Conditions")]
         public string Terms { get; set; }
+
+        [Required(ErrorMessage = "The field 'Start Date' is mandatory.")]
+        [Column(TypeName = "date")]
+        [DisplayName("Start Date")]
         public DateTime StartDate { get; set; }
+
+        [Required(ErrorMessage = "The field 'End Date' is mandatory.")]
+        [Column(TypeName = "date")]
+        [DisplayName("End Date")]
         public DateTime EndDate { get; set; }
         #endregion
 
