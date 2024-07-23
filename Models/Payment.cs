@@ -8,6 +8,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
     public class Payment : Interfaces.IPayment
     {
         #region Scalar Properties
+
         [Key]
         [DisplayName("Payment ID")]
         public int PaymentID { get; set; }
@@ -28,16 +29,25 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         [DisplayName("Payment Date")]
         public DateTime PaymentDate { get; set; }
+
         #endregion
 
         #region Navigation Properties
+
         // Relationship: Payment N - 1 Client
+        // Relationship: Payment N - 1 Membership
+
         [ForeignKey("Client")]
         public int ClientID { get; set; }
         public virtual Client Client { get; set; }
+        [ForeignKey("Membership")]
+        public int MembershipID { get; set; }
+        public virtual Membership Membership { get; set; }
+
         #endregion
 
         #region Constructors
+
         public Payment()
         {
             PaymentDate = DateTime.UtcNow;
@@ -49,6 +59,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
             PaymentValue = paymentValue;
             ClientID = clientId;
         }
+
         #endregion
 
     }

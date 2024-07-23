@@ -2,16 +2,8 @@
 {
     public enum EnumModalityType
     {
-        Aerobics,
-        BodyBuilding,
-        Crossfit,
-        Pilates,
-        Spinning,
-        Yoga,
-        Zumba,
-        Swimming,
-        MartialArts,
-        Dance,
-        Other
+        AllInclusive,
+        TwoModalities,
+        OneModality
     }
 }
