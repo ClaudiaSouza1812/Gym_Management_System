@@ -25,24 +25,21 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
         // Relationship: Client 1 - N Payment
         // Relationship: Client 1 - N Membership
         // Client will go as a foreign key in Payment and Membership
-        public virtual ICollection<Payment> Payments { get; set; }
-        public virtual ICollection<Membership> Memberships { get; set; }
+        public virtual ICollection<Payment> Payments { get; set; } = new HashSet<Payment>();
+        public virtual ICollection<Membership> Memberships { get; set; } = new HashSet<Membership>();
 
         #endregion
 
         #region Constructors
 
-        public Client() 
+        public Client() : base()
         { 
-            Payments = new HashSet<Payment>();
-            Memberships = new HashSet<Membership>();
+            Status = EnumClientStatus.Active;
         } 
 
         public Client(string firstName, string lastName, string nif, DateTime birthDate, string email, string phoneNumber, string address, string postalCode, string city, string country, EnumClientStatus status) : base(firstName, lastName, nif, birthDate, email, phoneNumber, address, postalCode, city, country)
         {
             Status = status;
-            Payments = new HashSet<Payment>();
-            Memberships = new HashSet<Membership>();
         }
 
         #endregion
