@@ -13,11 +13,6 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
         [DisplayName("Membership ID")]
         public int MembershipID { get; set; }
 
-        [Required(ErrorMessage = "The field 'Membership Type' is mandatory.")]
-        [Column(TypeName = "nvarchar")]
-        [DisplayName("Membership Type")]
-        public EnumMembershipType MembershipType { get; set; }
-
         [Required(ErrorMessage = "The field 'Loyal Member' is mandatory.")]
         [Column(TypeName = "bit")]
         [DisplayName("Loyal Member")]

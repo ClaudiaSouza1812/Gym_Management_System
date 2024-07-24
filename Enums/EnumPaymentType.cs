@@ -2,9 +2,8 @@
 {
     public enum EnumPaymentType
     {
-        AutomaticDebit,
-        AppPayment,
-        Cash,
-        CreditCard
+        MonthlyLoyalty,
+        Monthly,
+        PerSession
     }
 }
