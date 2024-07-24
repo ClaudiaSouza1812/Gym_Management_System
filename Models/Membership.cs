@@ -13,9 +13,6 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
         [DisplayName("Membership ID")]
         public int MembershipID { get; set; }
 
-        [ForeignKey("Client")]
-        public int ClientID { get; set; }
-
         [Required(ErrorMessage = "The field 'Membership Type' is mandatory.")]
         [Column(TypeName = "nvarchar")]
         [DisplayName("Membership Type")]
@@ -43,17 +40,21 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
 
         #region Navigation Properties
         // Relationship: Membership N - 1 Client
-        // Relationship: Membership N - N GymModality
+        // Relationship: Membership N - N Modality
+        // Membership will go as a foreign key in Client and Modality
         [ForeignKey("Client")]
+        public int ClientID { get; set; }
+
         public Client Client { get; set; }
-        ICollection<GymModality> GymModalities { get; set; }
+
+        ICollection<Modality> Modalities { get; set; }
 
         #endregion
 
         #region Constructors
         public Membership()
         {
-            GymModalities = new HashSet<GymModality>();
+            Modalities = new HashSet<Modality>();
         }
         #endregion
 

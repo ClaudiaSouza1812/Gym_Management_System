@@ -21,7 +21,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
 
         [Column(TypeName = "decimal(6,2)")]
         [DisplayName("Payment Value")]
-        public decimal PaymentValue { get; }
+        public decimal PaymentValue { get; set; }
 
         [Column(TypeName = "date")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]

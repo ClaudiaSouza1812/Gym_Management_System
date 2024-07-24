@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
 {
-    public class GymModality : IGymModality
+    public class Modality : IModality
     {
         #region Scalar Properties
         [Key]
@@ -28,15 +28,15 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
 
         #region Navigation Properties
 
-        // Relantionship: GymModality 1 - N Membership
-
+        // Relantionship: Modality 1 - N Membership
+        // Modality will go as a foreign key in Membership
         public ICollection<Membership> Memberships { get; set; }
 
         #endregion
 
         #region Constructors
 
-        public GymModality()
+        public Modality()
         {
             Memberships = new HashSet<Membership>();
         }

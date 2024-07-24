@@ -2,6 +2,7 @@
 {
     public enum EnumMembershipType
     {
+        MonthlyLoyalty,
         Monthly,
         PerSession
     }
