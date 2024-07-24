@@ -1,11 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models.Interfaces
+namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Interfaces.Entities
 {
     public interface IPerson
     {
         #region Scalar Properties
 
+        public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string NIF { get; set; }
@@ -16,6 +17,8 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models.Interfaces
         public string PostalCode { get; set; }
         public string City { get; set; }
         public string Country { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
 
         #endregion
 

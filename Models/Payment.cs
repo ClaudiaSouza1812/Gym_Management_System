@@ -1,11 +1,12 @@
 ﻿using P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Enums;
+using P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Interfaces.Entities;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
 {
-    public class Payment : Interfaces.IPayment
+    public class Payment : IPayment
     {
         #region Scalar Properties
 
@@ -18,13 +19,10 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
         [DisplayName("Payment Type")]
         public EnumPaymentType PaymentType { get; set; }
 
-        [Required(ErrorMessage = "Payment Value is required")]
         [Column(TypeName = "decimal(6,2)")]
-        [Range(0.01, double.MaxValue, ErrorMessage = "The field 'Payment Value' must be greater than 0")]
         [DisplayName("Payment Value")]
-        public decimal PaymentValue { get; set; }
+        public decimal PaymentValue { get; }
 
-        [Required(ErrorMessage = "Payment Date is required")]
         [Column(TypeName = "date")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         [DisplayName("Payment Date")]
@@ -54,15 +52,16 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
             PaymentDate = DateTime.UtcNow;
         }
 
-        public Payment(EnumPaymentType paymentType, decimal paymentValue, int clientId, int membershipId) : this()
+        public Payment(EnumPaymentType paymentType, int clientId, int membershipId) : this()
         {
             PaymentType = paymentType;
-            PaymentValue = paymentValue;
             ClientID = clientId;
             MembershipID = membershipId;
         }
 
         #endregion
+
+        
 
     }
 }

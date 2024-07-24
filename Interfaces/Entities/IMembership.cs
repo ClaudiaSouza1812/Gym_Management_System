@@ -1,6 +1,6 @@
 ﻿using P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Enums;
 
-namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models.Interfaces
+namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Interfaces.Entities
 {
     public interface IMembership
     {
@@ -14,6 +14,6 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models.Interfaces
         public DateTime EndDate { get; set; }
         #endregion
 
-        
+
     }
 }

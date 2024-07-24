@@ -1,6 +1,6 @@
 ﻿using P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Enums;
 
-namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models.Interfaces
+namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Interfaces.Entities
 {
     public interface IPayment
     {
@@ -8,7 +8,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models.Interfaces
 
         public int PaymentID { get; set; }
         public EnumPaymentType PaymentType { get; set; }
-        public decimal PaymentValue { get; set; }
+        public decimal PaymentValue { get; }
         public DateTime PaymentDate { get; set; }
 
         #endregion

@@ -2,12 +2,17 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
+using P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Interfaces.Entities;
 
 namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
 {
-    public abstract class Person : Interfaces.IPerson
+    public abstract class Person : IPerson
     {
         #region Scalar Properties
+
+        [Key]
+        [DisplayName("ID")]
+        public int Id { get; set; }
 
         [Required(ErrorMessage = "The field 'Name' is mandatory.")]
         [Column(TypeName = "nvarchar")]
@@ -63,12 +68,36 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
         [DisplayName("Country")]
         public string Country { get; set; }
 
+        [Column(TypeName = "datetime2")]
+        [DisplayName("Created At")]
+        public DateTime CreatedAt { get; set; }
+
+        [Column(TypeName = "datetime2")]
+        [DisplayName("Updated At")]
+        public DateTime? UpdatedAt { get; set; }
+
         // Computed Property
         public string FullName => $"{FirstName} {LastName}";
 
         #endregion
 
         #region Constructors
+
+        public Person()
+        { 
+            FirstName = string.Empty;
+            LastName = string.Empty;
+            NIF = string.Empty;
+            BirthDate = new DateTime();
+            Email = string.Empty;
+            PhoneNumber = string.Empty;
+            Address = string.Empty;
+            PostalCode = string.Empty;
+            City = string.Empty;
+            Country = string.Empty;
+            CreatedAt = DateTime.Now;
+            UpdatedAt = null;
+        }
 
         public Person(string firstName, string lastName, string nif, DateTime birthDate, string email, string phoneNumber, string address, string postalCode, string city, string country)
         {             
@@ -82,6 +111,8 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
             PostalCode = postalCode;
             City = city;
             Country = country;
+            CreatedAt = DateTime.Now;
+            UpdatedAt = null;
         }
 
         #endregion

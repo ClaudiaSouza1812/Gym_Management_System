@@ -2,10 +2,11 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Enums;
+using P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Interfaces.Entities;
 
 namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
 {
-    public class Membership : Interfaces.IMembership
+    public class Membership : IMembership
     {
         #region Scalar Properties
         [Key]

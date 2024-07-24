@@ -1,11 +1,12 @@
 ﻿using P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Enums;
+using P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Interfaces.Entities;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
 {
-    public class GymModality : Interfaces.IGymModality
+    public class GymModality : IGymModality
     {
         #region Scalar Properties
         [Key]
