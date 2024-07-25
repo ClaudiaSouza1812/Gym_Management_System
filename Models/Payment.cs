@@ -34,7 +34,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
 
         // Relationship: Payment N - 1 Client
         // Relationship: Payment N - 1 Membership
-
+        // Payment will go as collection in Client and Membership
         [ForeignKey("Client")]
         public int ClientID { get; set; }
         public virtual Client Client { get; set; }
@@ -49,12 +49,13 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
 
         public Payment()
         {
+            PaymentType = EnumPaymentType.PerSession;
+            PaymentValue = 0;
             PaymentDate = DateTime.UtcNow;
         }
 
         public Payment(EnumPaymentType paymentType, int clientId, int membershipId) : this()
         {
-            PaymentType = paymentType;
             ClientID = clientId;
             MembershipID = membershipId;
         }

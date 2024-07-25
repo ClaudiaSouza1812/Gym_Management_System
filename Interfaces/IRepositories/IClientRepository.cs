@@ -4,9 +4,6 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Interfaces.IRepositories
 {
     public interface IClientRepository
     {
-        List<Client> GetClientByPayment();
-        List<Client> GetClientByMonthlyPayment();
-        List<Client> GetClientByPerUsePayment();
-        List<Client> GetClient();
+        List<Client> GetAllClients();
     }
 }

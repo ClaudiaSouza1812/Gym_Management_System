@@ -6,9 +6,9 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Interfaces.IEntities
     {
         #region Scalar Properties
 
-        public int ModalityID { get; set; }
-        public EnumModalityName ModalityName { get; set; }
-        public EnumModalityPackage ModalityPackage { get; set; }
+        public int ModalityID { get; }
+        public EnumModalityName ModalityName { get; }
+        public EnumModalityPackage ModalityPackage { get; }
 
         #endregion
     }

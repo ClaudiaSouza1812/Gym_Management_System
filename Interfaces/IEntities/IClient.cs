@@ -6,7 +6,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Interfaces.IEntities
     {
         #region Scalar Properties
 
-        public EnumClientStatus Status { get; set; }
+        public EnumClientStatus Status { get; }
 
         #endregion
 

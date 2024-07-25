@@ -12,14 +12,13 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Interfaces.IRepositories
 
         #endregion
 
-        #region Methods and Functions
+        #region Methods
 
-        public virtual List<Client> GetClient()
+        public virtual List<Client> GetAllClients()
         {
-            return _clients;
+            return _clients.ToList();
         }
 
         #endregion
-
     }
 }
