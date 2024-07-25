@@ -8,7 +8,9 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Interfaces.IEntities
 
         int PaymentID { get; }
         EnumPaymentType PaymentType { get; }
-        decimal PaymentValue { get; }
+        decimal PaymentBaseValue { get; }
+        decimal PaymentBaseRate { get; }
+        decimal PaymentTotalValue { get; }
         DateTime PaymentDate { get; }
 
         #endregion

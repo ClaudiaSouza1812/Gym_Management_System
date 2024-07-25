@@ -20,8 +20,16 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
         public EnumPaymentType PaymentType { get; set; }
 
         [Column(TypeName = "decimal(6,2)")]
-        [DisplayName("Payment Value")]
-        public decimal PaymentValue { get; set; }
+        [DisplayName("Payment Base Value")]
+        public decimal PaymentBaseValue { get; set; }
+
+        [Column(TypeName = "decimal(6,2)")]
+        [DisplayName("Payment Rate")]
+        public decimal PaymentBaseRate { get; set; }
+
+        [Column(TypeName = "decimal(6,2)")]
+        [DisplayName("Payment Total Value")]
+        public decimal PaymentTotalValue { get; set; }
 
         [Column(TypeName = "date")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
@@ -50,7 +58,9 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
         public Payment()
         {
             PaymentType = EnumPaymentType.PerSession;
-            PaymentValue = 0;
+            PaymentBaseValue = 0;
+            PaymentBaseRate = 0;
+            PaymentTotalValue = 0;
             PaymentDate = DateTime.UtcNow;
         }
 
