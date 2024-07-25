@@ -6,19 +6,19 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Interfaces.IEntities
     {
         #region Scalar Properties
 
-        public int Id { get; }
-        public string FirstName { get; }
-        public string LastName { get; }
-        public string NIF { get; }
-        public DateTime BirthDate { get; }
-        public string Email { get; }
-        public string PhoneNumber { get; }
-        public string Address { get; }
-        public string PostalCode { get; }
-        public string City { get; }
-        public string Country { get; }
-        public DateTime CreatedAt { get; }
-        public DateTime? UpdatedAt { get; }
+        int Id { get; }
+        string FirstName { get; }
+        string LastName { get; }
+        string NIF { get; }
+        DateTime BirthDate { get; }
+        string Email { get; }
+        string PhoneNumber { get; }
+        string Address { get; }
+        string PostalCode { get; }
+        string City { get; }
+        string Country { get; }
+        DateTime CreatedAt { get; }
+        DateTime? UpdatedAt { get; }
 
         #endregion
 

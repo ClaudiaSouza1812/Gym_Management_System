@@ -5,12 +5,12 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Interfaces.IEntities
     public interface IMembership
     {
         #region Scalar Properties
-        public int MembershipID { get; }
-        public int ClientID { get; }
-        public bool IsLoyal { get; }
-        public decimal Discount { get; }
-        public DateTime StartDate { get; }
-        public DateTime EndDate { get; }
+        int MembershipID { get; }
+        int ClientID { get; }
+        bool IsLoyal { get; }
+        decimal Discount { get; }
+        DateTime StartDate { get; }
+        DateTime EndDate { get; }
         #endregion
 
 

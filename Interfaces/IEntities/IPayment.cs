@@ -6,10 +6,10 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Interfaces.IEntities
     {
         #region Scalar Properties
 
-        public int PaymentID { get; }
-        public EnumPaymentType PaymentType { get; }
-        public decimal PaymentValue { get; }
-        public DateTime PaymentDate { get; }
+        int PaymentID { get; }
+        EnumPaymentType PaymentType { get; }
+        decimal PaymentValue { get; }
+        DateTime PaymentDate { get; }
 
         #endregion
     }
