@@ -1,6 +1,6 @@
 ﻿using P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models;
 
-namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Interfaces.Repositories
+namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Interfaces.IRepositories
 {
     // Define the class ClientRepository that implements the interface IClientRepository
     // This class will interact with the database
@@ -8,15 +8,17 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Interfaces.Repositories
     {
         #region Fields
 
-        private readonly List<Client> _clients = new List<Client>();
+        protected readonly List<Client> _clients = new List<Client>();
 
         #endregion
 
         #region Methods and Functions
 
-        protected abstract Client GetClientByPayment();
+        public virtual List<Client> GetClient()
+        {
+            return _clients;
+        }
 
-        
         #endregion
 
     }
