@@ -29,6 +29,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
 
         [Required(ErrorMessage = "The field 'End Date' is mandatory.")]
         [Column(TypeName = "date")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         [DisplayName("End Date")]
         public DateTime EndDate { get; set; }
         #endregion
