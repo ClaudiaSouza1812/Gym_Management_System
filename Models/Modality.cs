@@ -26,19 +26,12 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
         
         #endregion
 
-        #region Navigation Properties
-
-        // Relantionship: Modality 1 - N Membership
-        // Modality will go as a foreign key in Membership
-        public ICollection<Membership> Memberships { get; set; }
-
-        #endregion
-
         #region Constructors
 
         public Modality()
         {
-            Memberships = new HashSet<Membership>();
+            ModalityName = new EnumModalityName();
+            ModalityPackage = EnumModalityPackage.OneModality;
         }
 
         #endregion

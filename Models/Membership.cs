@@ -35,22 +35,19 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
         #endregion
 
         #region Navigation Properties
-        // Relationship: Membership N - 1 Client
-        // Relationship: Membership N - N Modality
-        // Membership will go as a foreign key in Client and Modality
-        [ForeignKey("Client")]
-        public int ClientID { get; set; }
+        
 
-        public Client Client { get; set; }
-
-        ICollection<Modality> Modalities { get; set; }
+        ICollection<Contract> Contracts { get; set; } = new List<Contract>();
 
         #endregion
 
         #region Constructors
         public Membership()
         {
-            Modalities = new HashSet<Modality>();
+            IsLoyal = false;
+            Discount = 0;
+            StartDate = DateTime.UtcNow;
+            EndDate = DateTime.UtcNow.AddMonths(4);
         }
         #endregion
 
