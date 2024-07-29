@@ -11,7 +11,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
         #region Scalar Properties
         [Key]
         [DisplayName("Membership ID")]
-        public int MembershipID { get; set; }
+        public int MembershipId { get; set; }
 
         [Required(ErrorMessage = "The field 'Loyal Member' is mandatory.")]
         [Column(TypeName = "bit")]
@@ -20,6 +20,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
 
         [Required(ErrorMessage = "The field 'Discount' is mandatory.")]
         [Column(TypeName = "decimal(5,2)")]
+        [Range(0,20)]
         public decimal Discount { get; set; }
 
         [Required(ErrorMessage = "The field 'Start Date' is mandatory.")]
@@ -37,18 +38,30 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
         #region Navigation Properties
         
 
-        ICollection<Contract> Contracts { get; set; } = new List<Contract>();
+        public virtual ICollection<IContract> Contracts { get; set; }
 
         #endregion
 
         #region Constructors
+
         public Membership()
         {
             IsLoyal = false;
             Discount = 0;
             StartDate = DateTime.UtcNow;
             EndDate = DateTime.UtcNow.AddMonths(4);
+            Contracts = new List<IContract>();
         }
+
+        public Membership(bool isLoyal, decimal discount, DateTime startDate, DateTime endDate)
+        {
+            IsLoyal = isLoyal;
+            Discount = discount;
+            StartDate = startDate;
+            EndDate = endDate;
+            Contracts = new List<IContract>();
+        }
+
         #endregion
 
         

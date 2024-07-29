@@ -7,7 +7,6 @@
         int ContractId { get; }
         int ClientId { get; }
         int MembershipId { get; }
-        int PaymentId { get; }
         DateTime ContractDate { get; }
     }
 }

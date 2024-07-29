@@ -8,6 +8,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Interfaces.IEntities
         #region Scalar Properties
 
         int PaymentID { get; }
+        int ContractId { get; }
         EnumPaymentType PaymentType { get; }
         decimal PaymentBaseValue { get; }
         decimal PaymentBaseRate { get; }

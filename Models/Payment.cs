@@ -40,6 +40,10 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
 
         #region Navigation Properties
 
+        [Required]
+        [ForeignKey("Contract")]
+        public int ContractId { get; set; }
+
         public virtual IContract Contract {  get; set; }
 
         #endregion
@@ -53,6 +57,15 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
             PaymentBaseRate = 0;
             PaymentTotalValue = 0;
             PaymentDate = DateTime.UtcNow;
+        }
+
+        public Payment(EnumPaymentType paymentType, decimal paymentBaseValue,  decimal paymentBaseRate, DateTime paymentDate)
+        {
+            PaymentType = paymentType;
+            PaymentBaseValue = paymentBaseValue;
+            PaymentBaseRate = paymentBaseRate;
+            PaymentTotalValue = paymentBaseValue * paymentBaseRate;
+            PaymentDate = paymentDate;
         }
 
         #endregion

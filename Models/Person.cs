@@ -37,12 +37,14 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
         [DisplayName("Birth Date")]
         public DateTime BirthDate { get; set; }
 
+        [EmailAddress]
         [Required(ErrorMessage = "The field 'Email' is mandatory.")]
         [Column(TypeName = "nvarchar")]
         [StringLength(50, ErrorMessage = "Limit of 50 characters.")]
         [DisplayName("Email")]
         public string Email { get; set; }
 
+        [Phone]
         [Column(TypeName = "nvarchar")]
         [StringLength(9, ErrorMessage = "Limit of 9 characters.")]
         [DisplayName("Phone Number")]

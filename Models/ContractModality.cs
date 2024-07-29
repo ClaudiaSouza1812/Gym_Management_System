@@ -26,9 +26,9 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
 
         #region Navigation Properties
 
-        public IContract Contract { get; set; }
+        public virtual IContract Contract { get; set; }
 
-        public IModality Modality { get; set; }
+        public virtual IModality Modality { get; set; }
 
         #endregion
 

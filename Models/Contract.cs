@@ -35,11 +35,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
 
         public virtual IMembership Membership { get; set; }
 
-        [Required]
-        [ForeignKey("Payment")]
-        public int PaymentId { get; set; }
-
-        public virtual IPayment Payment { get; set; }
+        public virtual ICollection<Payment> Payments { get; set; }
 
         #endregion
 
@@ -49,15 +45,16 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
         public Contract()
         {
             ContractDate = DateTime.UtcNow;
+            Payments = new List<Payment>();
         }
 
         // Constructor for existent contracts
-        public Contract(DateTime contractDate, int clienteId, int membershipId, int paymentId)
+        public Contract(DateTime contractDate, int clienteId, int membershipId)
         { 
             ContractDate = contractDate;
             ClientId = clienteId;
             MembershipId = membershipId;
-            PaymentId = paymentId;
+            Payments = new List <Payment>();
         }
 
         #endregion

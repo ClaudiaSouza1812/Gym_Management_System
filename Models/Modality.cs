@@ -34,6 +34,12 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
             ModalityPackage = EnumModalityPackage.OneModality;
         }
 
+        public Modality(EnumModalityName modalityName, EnumModalityPackage modalityPackage)
+        {
+            ModalityName = modalityName;
+            ModalityPackage = modalityPackage;
+        }
+
         #endregion
     }
 }
