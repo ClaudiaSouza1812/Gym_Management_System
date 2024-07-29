@@ -40,7 +40,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
 
         #region Navigation Properties
 
-        public virtual ICollection<Contract> Contracts { get; set; } = new List<Contract>();
+        public virtual IContract Contract {  get; set; }
 
         #endregion
 

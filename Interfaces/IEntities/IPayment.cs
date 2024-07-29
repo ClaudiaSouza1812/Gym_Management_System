@@ -1,4 +1,5 @@
 ﻿using P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Enums;
+using System.Diagnostics.Contracts;
 
 namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Interfaces.IEntities
 {
@@ -14,5 +15,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Interfaces.IEntities
         DateTime PaymentDate { get; }
 
         #endregion
+
+        IContract Contract { get; set; }
     }
 }
