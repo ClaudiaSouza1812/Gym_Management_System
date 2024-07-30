@@ -1,4 +1,6 @@
-﻿namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Interfaces.IEntities
+﻿using P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models;
+
+namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Interfaces.IEntities
 {
     public interface IContract
     {
@@ -15,10 +17,10 @@
 
         #region Navigation Properties
 
-        IClient Client { get; }
-        IMembership Membership { get; }
-        ICollection<IPayment> Payments { get; }
-        ICollection<IContractModality> ContractModalities { get; }
+        Client Client { get; }
+        Membership Membership { get; }
+        ICollection<Payment> Payments { get; }
+        ICollection<ContractModality> ContractModalities { get; }
 
         #endregion
     }

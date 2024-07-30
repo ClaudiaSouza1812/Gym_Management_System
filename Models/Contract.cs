@@ -31,10 +31,10 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
 
         #region Navigation Properties
 
-        public virtual IClient Client { get; set; }
-        public virtual IMembership Membership { get; set; }
-        public virtual ICollection<IPayment> Payments { get; set; }
-        public virtual ICollection<IContractModality> ContractModalities { get; set; }
+        public virtual Client Client { get; set; }
+        public virtual Membership Membership { get; set; }
+        public virtual ICollection<Payment> Payments { get; set; }
+        public virtual ICollection<ContractModality> ContractModalities { get; set; }
 
         #endregion
 
@@ -44,8 +44,8 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
         public Contract()
         {
             ContractDate = DateTime.UtcNow;
-            Payments = new List<IPayment>();
-            ContractModalities = new List<IContractModality>();
+            Payments = new List<Payment>();
+            ContractModalities = new List<ContractModality>();
         }
 
         // Constructor for existent contracts
@@ -54,8 +54,8 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
             ClientId = clienteId;
             MembershipId = membershipId;
             ContractDate = contractDate;
-            Payments = new List <IPayment>();
-            ContractModalities = new List<IContractModality>();
+            Payments = new List <Payment>();
+            ContractModalities = new List<ContractModality>();
         }
 
         #endregion

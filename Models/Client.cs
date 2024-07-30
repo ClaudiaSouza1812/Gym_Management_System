@@ -22,7 +22,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
 
         #region Navigation Properties
 
-        public virtual ICollection<IContract> Contracts { get; set; }
+        public virtual ICollection<Contract> Contracts { get; set; }
 
         #endregion
 
@@ -31,13 +31,13 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
         public Client() : base()
         { 
             Status = EnumClientStatus.Active;
-            Contracts = new List<IContract>();
+            Contracts = new List<Contract>();
         } 
 
         public Client(string firstName, string lastName, string nif, DateTime birthDate, string email, string phoneNumber, string address, string postalCode, string city, string country, EnumClientStatus status) : base(firstName, lastName, nif, birthDate, email, phoneNumber, address, postalCode, city, country)
         {
             Status = status;
-            Contracts = new List<IContract>();
+            Contracts = new List<Contract>();
         }
 
         #endregion

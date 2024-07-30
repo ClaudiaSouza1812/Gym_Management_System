@@ -38,7 +38,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
         #region Navigation Properties
         
 
-        public virtual ICollection<IContract> Contracts { get; set; }
+        public virtual ICollection<Contract> Contracts { get; set; }
 
         #endregion
 
@@ -50,7 +50,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
             Discount = 0;
             StartDate = DateTime.UtcNow;
             EndDate = DateTime.UtcNow.AddMonths(4);
-            Contracts = new List<IContract>();
+            Contracts = new List<Contract>();
         }
 
         public Membership(bool isLoyal, decimal discount, DateTime startDate, DateTime endDate)
@@ -59,7 +59,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
             Discount = discount;
             StartDate = startDate;
             EndDate = endDate;
-            Contracts = new List<IContract>();
+            Contracts = new List<Contract>();
         }
 
         #endregion

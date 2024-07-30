@@ -1,4 +1,6 @@
-﻿namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Interfaces.IEntities
+﻿using P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models;
+
+namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Interfaces.IEntities
 {
     public interface IContractModality
     {
@@ -12,8 +14,8 @@
 
         #region Navigation Properties
 
-        IContract Contract { get; }
-        IModality Modality { get; }
+        Contract Contract { get; }
+        Modality Modality { get; }
 
         #endregion
     }

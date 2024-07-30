@@ -44,7 +44,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
 
         #region Navigation Properties
 
-        public virtual IContract Contract {  get; set; }
+        public virtual Contract Contract {  get; set; }
 
         #endregion
 
