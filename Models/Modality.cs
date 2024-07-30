@@ -23,14 +23,11 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
         [DisplayName("Modality Type")]
         public EnumModalityPackage ModalityPackage { get; set; }
 
-        public virtual ICollection<IContractModality> ContractModalities { get; set; }
-
-
         #endregion
 
         #region Navigation Properties
 
-
+        public virtual ICollection<IContractModality> ContractModalities { get; set; }
 
         #endregion
 
@@ -43,11 +40,10 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
             ContractModalities = new List<IContractModality>();
         }
 
-        public Modality(EnumModalityName modalityName, EnumModalityPackage modalityPackage)
+        public Modality(EnumModalityName modalityName, EnumModalityPackage modalityPackage) : this() 
         {
             ModalityName = modalityName;
             ModalityPackage = modalityPackage;
-            ContractModalities = new List<IContractModality>();
         }
 
         #endregion
