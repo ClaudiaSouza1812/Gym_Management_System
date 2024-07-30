@@ -10,7 +10,6 @@
 
         #endregion
 
-
         #region Navigation Properties
 
         IContract Contract { get; }

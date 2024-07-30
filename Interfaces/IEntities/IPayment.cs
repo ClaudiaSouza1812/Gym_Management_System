@@ -17,6 +17,11 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Interfaces.IEntities
 
         #endregion
 
-        IContract Contract { get; set; }
+        #region Navigation Properties
+
+        IContract Contract { get; }
+
+        #endregion
+
     }
 }

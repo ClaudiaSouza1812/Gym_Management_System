@@ -14,6 +14,10 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
         [DisplayName("Payment ID")]
         public int PaymentID { get; set; }
 
+        [Required]
+        [ForeignKey("Contract")]
+        public int ContractId { get; set; }
+
         [Required(ErrorMessage = "Payment Type is required")]
         [Column(TypeName = "nvarchar")]
         [DisplayName("Payment Type")]
@@ -39,10 +43,6 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
         #endregion
 
         #region Navigation Properties
-
-        [Required]
-        [ForeignKey("Contract")]
-        public int ContractId { get; set; }
 
         public virtual IContract Contract {  get; set; }
 

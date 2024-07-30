@@ -78,7 +78,10 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
         [DisplayName("Updated At")]
         public DateTime? UpdatedAt { get; set; }
 
-        // Computed Property
+        #endregion
+
+        #region Computed Property
+
         public string FullName => $"{FirstName} {LastName}";
 
         #endregion

@@ -13,6 +13,14 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
         [DisplayName("Contract ID")]
         public int ContractId { get; set; }
 
+        [Required]
+        [ForeignKey("Client")]
+        public int ClientId { get; set; }
+
+        [Required]
+        [ForeignKey("Membership")]
+        public int MembershipId { get; set; }
+
         [Required(ErrorMessage = "The field 'Contract Date' is mandatory")]
         [Column(TypeName = "date")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
@@ -23,19 +31,10 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
 
         #region Navigation Properties
 
-        [Required]
-        [ForeignKey("Client")]
-        public int ClientId { get; set; }
-
         public virtual IClient Client { get; set; }
-
-        [Required]
-        [ForeignKey("Membership")]
-        public int MembershipId { get; set; }
-
         public virtual IMembership Membership { get; set; }
-
-        public virtual ICollection<Payment> Payments { get; set; }
+        public virtual ICollection<IPayment> Payments { get; set; }
+        public virtual ICollection<IContractModality> ContractModalities { get; set; }
 
         #endregion
 
@@ -45,16 +44,18 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
         public Contract()
         {
             ContractDate = DateTime.UtcNow;
-            Payments = new List<Payment>();
+            Payments = new List<IPayment>();
+            ContractModalities = new List<IContractModality>();
         }
 
         // Constructor for existent contracts
         public Contract(DateTime contractDate, int clienteId, int membershipId)
         { 
-            ContractDate = contractDate;
             ClientId = clienteId;
             MembershipId = membershipId;
-            Payments = new List <Payment>();
+            ContractDate = contractDate;
+            Payments = new List <IPayment>();
+            ContractModalities = new List<IContractModality>();
         }
 
         #endregion

@@ -11,5 +11,11 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Interfaces.IEntities
         EnumModalityPackage ModalityPackage { get; }
 
         #endregion
+
+        #region Navigation Properties
+
+        ICollection<IContractModality> ContractModalities { get; }
+
+        #endregion
     }
 }
