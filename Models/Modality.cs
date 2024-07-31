@@ -16,11 +16,13 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
         [Required(ErrorMessage = "Modality Name is required")]
         [Column(TypeName = "nvarchar")]
         [DisplayName("Modality Name")]
+        [EnumDataType(typeof(EnumModalityName))]
         public EnumModalityName ModalityName { get; set; }
 
         [Required(ErrorMessage = "Modality Type is required")]
         [Column(TypeName = "nvarchar")]
         [DisplayName("Modality Type")]
+        [EnumDataType(typeof(EnumModalityPackage))]
         public EnumModalityPackage ModalityPackage { get; set; }
 
         #endregion
