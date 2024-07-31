@@ -15,10 +15,12 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
 
         [Required]
         [ForeignKey("Client")]
+        [DisplayName("Client ID")]
         public int ClientId { get; set; }
 
         [Required]
         [ForeignKey("Membership")]
+        [DisplayName("Membership ID")]
         public int MembershipId { get; set; }
 
         [Required(ErrorMessage = "The field 'Contract Date' is mandatory")]

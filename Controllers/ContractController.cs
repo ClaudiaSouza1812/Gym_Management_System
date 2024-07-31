@@ -49,7 +49,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
         // GET: Contract/Create
         public IActionResult Create()
         {
-            ViewData["ClientId"] = new SelectList(_context.Client, "Id", "Email");
+            ViewData["ClientId"] = new SelectList(_context.Client, "Id", "Id");
             ViewData["MembershipId"] = new SelectList(_context.Membership, "MembershipId", "MembershipId");
             return View();
         }
@@ -59,15 +59,23 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ContractId,ClientId,MembershipId,ContractDate")] Contract contract)
+        public async Task<IActionResult> Create([Bind("ClientId,MembershipId,ContractDate")] Contract contract)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(contract);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                try
+                {
+                    _context.Contract.Add(contract);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"{ex.Message}");
+                }
+                
             }
-            ViewData["ClientId"] = new SelectList(_context.Client, "Id", "Email", contract.ClientId);
+            ViewData["ClientId"] = new SelectList(_context.Client, "Id", "FullName", contract.ClientId);
             ViewData["MembershipId"] = new SelectList(_context.Membership, "MembershipId", "MembershipId", contract.MembershipId);
             return View(contract);
         }
@@ -85,7 +93,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
             {
                 return NotFound();
             }
-            ViewData["ClientId"] = new SelectList(_context.Client, "Id", "Email", contract.ClientId);
+            ViewData["ClientId"] = new SelectList(_context.Client, "Id", "Id", contract.ClientId);
             ViewData["MembershipId"] = new SelectList(_context.Membership, "MembershipId", "MembershipId", contract.MembershipId);
             return View(contract);
         }
@@ -122,7 +130,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ClientId"] = new SelectList(_context.Client, "Id", "Email", contract.ClientId);
+            ViewData["ClientId"] = new SelectList(_context.Client, "Id", "Id", contract.ClientId);
             ViewData["MembershipId"] = new SelectList(_context.Membership, "MembershipId", "MembershipId", contract.MembershipId);
             return View(contract);
         }
