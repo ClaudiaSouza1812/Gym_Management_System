@@ -2,8 +2,8 @@
 {
     public enum EnumModalityPackage
     {
-        AllInclusive,
-        TwoModalities,
-        OneModality
+        AllInclusive = 1,
+        TwoModalities = 2,
+        OneModality = 3
     }
 }

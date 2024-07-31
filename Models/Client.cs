@@ -14,7 +14,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
         #region Scalar Properties
 
         [Required(ErrorMessage = "The field 'Status' is mandatory.")]
-        [Column(TypeName = "nvarchar")]
+        [Column(TypeName = "int")]
         [StringLength(30, ErrorMessage = "Limit of 30 characters.")]
         [DisplayName("Client Status")]
         [EnumDataType(typeof(EnumClientStatus))]

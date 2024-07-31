@@ -19,7 +19,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
         public int ContractId { get; set; }
 
         [Required(ErrorMessage = "Payment Type is required")]
-        [Column(TypeName = "nvarchar")]
+        [Column(TypeName = "int")]
         [DisplayName("Payment Type")]
         [EnumDataType(typeof(EnumPaymentType))]
         public EnumPaymentType PaymentType { get; set; }

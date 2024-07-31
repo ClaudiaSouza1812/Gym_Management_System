@@ -2,8 +2,8 @@
 {
     public enum EnumClientStatus
     {
-        Active,
-        Inative,
-        Suspended
+        Active = 1,
+        Inative = 2,
+        Suspended = 3
     }
 }
