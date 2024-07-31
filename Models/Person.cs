@@ -35,7 +35,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
         [Required(ErrorMessage = "The field 'Birth Date' is mandatory.")]
         [Column(TypeName = "date")]
         [DisplayName("Birth Date")]
-        public DateOnly BirthDate { get; set; }
+        public DateTime BirthDate { get; set; }
 
         [EmailAddress]
         [Required(ErrorMessage = "The field 'Email' is mandatory.")]
@@ -93,7 +93,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
             FirstName = string.Empty;
             LastName = string.Empty;
             NIF = string.Empty;
-            BirthDate = new DateOnly();
+            BirthDate = new DateTime();
             Email = string.Empty;
             PhoneNumber = string.Empty;
             Address = string.Empty;
@@ -104,7 +104,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
             UpdatedAt = null;
         }
 
-        public Person(string firstName, string lastName, string nif, DateOnly birthDate, string email, string phoneNumber, string address, string postalCode, string city, string country)
+        public Person(string firstName, string lastName, string nif, DateTime birthDate, string email, string phoneNumber, string address, string postalCode, string city, string country)
         {             
             FirstName = firstName;
             LastName = lastName;

@@ -15,6 +15,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
 
         [Required(ErrorMessage = "The field 'Status' is mandatory.")]
         [Column(TypeName = "nvarchar")]
+        [StringLength(30, ErrorMessage = "Limit of 30 characters.")]
         [DisplayName("Client Status")]
         [EnumDataType(typeof(EnumClientStatus))]
         public EnumClientStatus Status { get; set; }
@@ -35,7 +36,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
             Contracts = new List<Contract>();
         } 
 
-        public Client(string firstName, string lastName, string nif, DateOnly birthDate, string email, string phoneNumber, string address, string postalCode, string city, string country, EnumClientStatus status) : base(firstName, lastName, nif,  birthDate, email, phoneNumber, address, postalCode, city, country)
+        public Client(string firstName, string lastName, string nif, DateTime birthDate, string email, string phoneNumber, string address, string postalCode, string city, string country, EnumClientStatus status) : base(firstName, lastName, nif,  birthDate, email, phoneNumber, address, postalCode, city, country)
         {
             Status = status;
             Contracts = new List<Contract>();

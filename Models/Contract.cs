@@ -25,7 +25,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
         [Column(TypeName = "date")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         [DisplayName("Contract Date")]
-        public DateOnly ContractDate { get; set; }
+        public DateTime ContractDate { get; set; }
 
         #endregion
 
@@ -43,13 +43,13 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
         // Constructor for new contracts
         public Contract()
         {
-            ContractDate = new DateOnly();
+            ContractDate = new DateTime();
             Payments = new List<Payment>();
             ContractModalities = new List<ContractModality>();
         }
 
         // Constructor for existent contracts
-        public Contract(DateOnly contractDate, int clienteId, int membershipId)
+        public Contract(DateTime contractDate, int clienteId, int membershipId)
         { 
             ClientId = clienteId;
             MembershipId = membershipId;
