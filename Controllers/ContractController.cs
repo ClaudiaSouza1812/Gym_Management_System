@@ -22,8 +22,8 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
         // GET: Contract
         public async Task<IActionResult> Index()
         {
-            var cA_RS11_P2_2_ClaudiaSouza_DBContext = _context.Contract.Include(c => c.Client).Include(c => c.Membership);
-            return View(await cA_RS11_P2_2_ClaudiaSouza_DBContext.ToListAsync());
+            var CA_RS11_P2_2_ClaudiaSouza_DBContext = _context.Contract.Include(c => c.Client).Include(c => c.Membership);
+            return View(await CA_RS11_P2_2_ClaudiaSouza_DBContext.ToListAsync());
         }
 
         // GET: Contract/Details/5
@@ -49,8 +49,8 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
         // GET: Contract/Create
         public IActionResult Create()
         {
-            ViewData["ClientId"] = new SelectList(_context.Client, "Id", "Id");
-            ViewData["MembershipId"] = new SelectList(_context.Membership, "MembershipId", "MembershipId");
+            ViewBag.ClientId = new SelectList(_context.Client, "Id", "FullName");
+            ViewBag.MembershipId = new SelectList(_context.Membership, "MembershipId", "MembershipId");
             return View();
         }
 
@@ -61,22 +61,30 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ClientId,MembershipId,ContractDate")] Contract contract)
         {
+            Console.WriteLine($"Received Contract: ClientId={contract.ClientId}, MembershipId={contract.MembershipId}, ContractDate={contract.ContractDate}");
+
+
+            if (!ModelState.IsValid)
+            {
+                foreach (var modelState in ViewData.ModelState.Values)
+                {
+                    foreach (var error in modelState.Errors)
+                    {
+                        Console.WriteLine(error.ErrorMessage);
+                    }
+                }
+            }
+
             if (ModelState.IsValid)
             {
-                try
-                {
-                    _context.Contract.Add(contract);
-                    await _context.SaveChangesAsync();
-                    return RedirectToAction(nameof(Index));
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"{ex.Message}");
-                }
-                
+                _context.Add(contract);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
             }
-            ViewData["ClientId"] = new SelectList(_context.Client, "Id", "FullName", contract.ClientId);
-            ViewData["MembershipId"] = new SelectList(_context.Membership, "MembershipId", "MembershipId", contract.MembershipId);
+
+
+            ViewBag.ClientId = new SelectList(_context.Client, "Id", "FullName", contract.ClientId);
+            ViewBag.MembershipId = new SelectList(_context.Membership, "MembershipId", "MembershipId", contract.MembershipId);
             return View(contract);
         }
 

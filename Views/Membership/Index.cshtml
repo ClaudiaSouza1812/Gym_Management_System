@@ -13,6 +13,9 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.MembershipId)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.IsLoyal)
             </th>
             <th>
@@ -30,6 +33,9 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MembershipId)
+                </td>
             <td>
                 @Html.DisplayFor(modelItem => item.IsLoyal)
             </td>

@@ -10,6 +10,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
         #region Scalar Properties
 
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [DisplayName("Contract ID")]
         public int ContractId { get; set; }
 
@@ -32,9 +33,12 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
         #endregion
 
         #region Navigation Properties
-
+        [ForeignKey("ClientId")]
         public virtual Client Client { get; set; }
+
+        [ForeignKey("MembershipId")]
         public virtual Membership Membership { get; set; }
+
         public virtual ICollection<Payment> Payments { get; set; }
         public virtual ICollection<ContractModality> ContractModalities { get; set; }
 
