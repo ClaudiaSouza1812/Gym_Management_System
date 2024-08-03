@@ -248,7 +248,7 @@ samp {
   font-family: var(--bs-font-monospace);
   font-size: 1em;
   direction: ltr ;
-  unicode-bIdi: bIdi-overrIde;
+  unicode-bIdi: bIdi-override;
 }
 
 pre {

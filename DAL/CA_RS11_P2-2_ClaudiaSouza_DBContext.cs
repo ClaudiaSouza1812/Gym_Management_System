@@ -14,9 +14,11 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.DAL
         public virtual DbSet<Modality> Modality { get; set; } = null!;
         public virtual DbSet<ContractModality> ContractModality { get; set; } = null!;
 
-        protected overrIde voId OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<ContractModality>().HasKey(cm => new { cm.ContractId, cm.ModalityId });
 
 
         }

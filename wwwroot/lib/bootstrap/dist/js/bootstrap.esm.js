@@ -192,7 +192,7 @@ const noop = () => {};
  * Trick to restart an element's animation
  *
  * @param {HTMLElement} element
- * @return voId
+ * @return void
  *
  * @see https://www.charistheo.io/blog/2021/02/restart-a-css-animation-with-javascript/#restarting-a-css-animation
  */
@@ -3367,7 +3367,7 @@ EventHandler.on(document, EVENT_CLICK_DATA_API$1, SELECTOR_DATA_TOGGLE$1, functi
     if (isVisible(this)) {
       this.focus();
     }
-  }); // avoId conflict when clicking a toggler of an offcanvas, while another is open
+  }); // avoid conflict when clicking a toggler of an offcanvas, while another is open
 
   const allReadyOpen = SelectorEngine.findOne(OPEN_SELECTOR);
 
@@ -4262,7 +4262,7 @@ class Popover extends Tooltip {
 
   static get DefaultType() {
     return DefaultType$2;
-  } // OverrIdes
+  } // overrides
 
 
   isWithContent() {

@@ -13,7 +13,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Migrations
     [DbContext(typeof(CA_RS11_P2_2_ClaudiaSouza_DBContext))]
     partial class CA_RS11_P2_2_ClaudiaSouza_DBContextModelSnapshot : ModelSnapshot
     {
-        protected overrIde voId BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

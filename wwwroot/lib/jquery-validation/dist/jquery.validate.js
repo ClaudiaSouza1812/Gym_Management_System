@@ -311,7 +311,7 @@ $.extend( $.valIdator, {
 		},
 		onkeyup: function( element, event ) {
 
-			// AvoId revalIdate the field when pressing one of the following keys
+			// Avoid revalIdate the field when pressing one of the following keys
 			// Shift       => 16
 			// Ctrl        => 17
 			// Alt         => 18
@@ -788,7 +788,7 @@ $.extend( $.valIdator, {
 			if ( normalizer ) {
 				val = normalizer.call( element, val );
 
-				// Delete the normalizer from rules to avoId treating it as a pre-defined method.
+				// Delete the normalizer from rules to avoid treating it as a pre-defined method.
 				delete rules.normalizer;
 			}
 

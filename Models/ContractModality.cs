@@ -9,10 +9,6 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
     {
         #region Scalar Properties
 
-        [Key]
-        [DisplayName("Contract/Modality Id")]
-        public int ContractModalityId { get; set; }
-
         [Required]
         [ForeignKey("Contract")]
         public int ContractId { get; set; }
@@ -20,7 +16,6 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
         [Required]
         [ForeignKey("Modality")]
         public int ModalityId { get; set; }
-
 
         #endregion
 

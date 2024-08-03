@@ -15,7 +15,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Migrations
     [Migration("20240731154152_04_EnumsChangeDataType")]
     partial class _04_EnumsChangeDataType
     {
-        protected overrIde voId BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

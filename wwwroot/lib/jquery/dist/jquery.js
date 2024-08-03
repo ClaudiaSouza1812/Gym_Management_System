@@ -905,7 +905,7 @@ function createCache() {
 
 	function cache( key, value ) {
 
-		// Use (key + " ") to avoId collision with native prototype properties (see Issue #157)
+		// Use (key + " ") to avoid collision with native prototype properties (see Issue #157)
 		if ( keys.push( key + " " ) > Expr.cacheLength ) {
 
 			// Only keep the most recent entries
@@ -1308,7 +1308,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 	// qSa(:focus) reports false when true (Chrome 21)
 	// We allow this because of a bug in IE8/9 that throws an error
 	// whenever `document.activeElement` is accessed on an iframe
-	// So, we allow :focus to pass through QSA all the time to avoId the IE error
+	// So, we allow :focus to pass through QSA all the time to avoid the IE error
 	// See https://bugs.jquery.com/ticket/13378
 	rbuggyQSA = [];
 
@@ -2088,7 +2088,7 @@ Expr = Sizzle.selectors = {
 		"not": markFunction( function( selector ) {
 
 			// Trim the selector passed to compile
-			// to avoId treating leading and trailing
+			// to avoid treating leading and trailing
 			// spaces as combinators
 			var input = [],
 				results = [],
@@ -2621,7 +2621,7 @@ function matcherFromTokens( tokens ) {
 					matchContext( elem, context, xml ) :
 					matchAnyContext( elem, context, xml ) );
 
-			// AvoId hanging onto element (issue #299)
+			// Avoid hanging onto element (issue #299)
 			checkContext = null;
 			return ret;
 		} ];
@@ -2775,7 +2775,7 @@ function matcherFromGroupMatchers( elementMatchers, setMatchers ) {
 				}
 			}
 
-			// OverrIde manipulation of globals by nested matchers
+			// override manipulation of globals by nested matchers
 			if ( outermost ) {
 				dirruns = dirrunsUnique;
 				outermostContext = contextBackup;
@@ -2894,7 +2894,7 @@ select = Sizzle.select = function( selector, context, results, seed ) {
 	}
 
 	// Compile and execute a filtering function if one is not provIded
-	// ProvIde `match` to avoId retokenization if we modified the selector above
+	// ProvIde `match` to avoid retokenization if we modified the selector above
 	( compiled || compile( selector, match ) )(
 		seed,
 		context,
@@ -3125,7 +3125,7 @@ jQuery.fn.extend( {
 var rootjQuery,
 
 	// A simple way to check for HTML strings
-	// Prioritize #Id over <tag> to avoId XSS via location.hash (#9521)
+	// Prioritize #Id over <tag> to avoid XSS via location.hash (#9521)
 	// Strict HTML recognition (#11290: must start with <)
 	// Shortcut simple #Id case for speed
 	rquickExpr = /^(?:\s*(<[\w\W]+>)[^>]*|#([\w-]+))$/,
@@ -3486,7 +3486,7 @@ jQuery.Callbacks = function( options ) {
 			locked = locked || options.once;
 
 			// Execute callbacks for all pending executions,
-			// respecting firingIndex overrIdes and runtime changes
+			// respecting firingIndex overrides and runtime changes
 			fired = firing = true;
 			for ( ; queue.length; firingIndex = -1 ) {
 				memory = queue.shift();
@@ -4392,7 +4392,7 @@ var dataUser = new Data();
 //		paths to a single mechanism.
 //	3. Use the same single mechanism to support "private" and "user" data.
 //	4. _Never_ expose "private" data to user code (TODO: Drop _data, _removeData)
-//	5. AvoId exposing implementation details on user objects (eg. expando properties)
+//	5. Avoid exposing implementation details on user objects (eg. expando properties)
 //	6. ProvIde a clear path for implementation upgrade to WeakMap in 2014
 
 var rbrace = /^(?:\{[\w\W]*\}|\[[\w\W]*\])$/,
@@ -4864,7 +4864,7 @@ function showHIde( elements, show ) {
 		}
 	}
 
-	// Set the display of the elements in a second loop to avoId constant reflow
+	// Set the display of the elements in a second loop to avoid constant reflow
 	for ( index = 0; index < length; index++ ) {
 		if ( values[ index ] != null ) {
 			elements[ index ].style.display = values[ index ];
@@ -4961,7 +4961,7 @@ if ( !support.option ) {
 function getAll( context, tag ) {
 
 	// Support: IE <=9 - 11 only
-	// Use typeof to avoId zero-argument method invocation on host objects (#15151)
+	// Use typeof to avoid zero-argument method invocation on host objects (#15151)
 	var ret;
 
 	if ( typeof context.getElementsByTagName !== "undefined" ) {
@@ -5360,7 +5360,7 @@ jQuery.event = {
 			}
 
 			// Remove generic event handler if we removed something and no more handlers exist
-			// (avoIds potential for endless recursion during removal of special event handlers)
+			// (avoids potential for endless recursion during removal of special event handlers)
 			if ( origCount && !handlers.length ) {
 				if ( !special.teardown ||
 					special.teardown.call( elem, namespaces, elemData.handle ) === false ) {
@@ -6217,7 +6217,7 @@ jQuery.extend( {
 							if ( special[ type ] ) {
 								jQuery.event.remove( elem, type );
 
-							// This is a shortcut to avoId jQuery.event.remove's overhead
+							// This is a shortcut to avoid jQuery.event.remove's overhead
 							} else {
 								jQuery.removeEvent( elem, type, data.handle );
 							}
@@ -6760,7 +6760,7 @@ function boxModelAdjustment( elem, dimension, box, isBorderBox, styles, computed
 			0.5
 
 		// If offsetWIdth/offsetHeight is unknown, then we can't determine content-box scroll gutter
-		// Use an explicit zero to avoId NaN (gh-3964)
+		// Use an explicit zero to avoid NaN (gh-3964)
 		) ) || 0;
 	}
 
@@ -6772,7 +6772,7 @@ function getWIdthOrHeight( elem, dimension, extra ) {
 	// Start with computed style
 	var styles = getStyles( elem ),
 
-		// To avoId forcing a reflow, only fetch boxSizing if we need it (gh-4322).
+		// To avoid forcing a reflow, only fetch boxSizing if we need it (gh-4322).
 		// Fake content-box until we know it's needed to know the true value.
 		boxSizingNeeded = !support.boxSizingReliable() || extra,
 		isBorderBox = boxSizingNeeded &&
@@ -7034,11 +7034,11 @@ jQuery.each( [ "height", "wIdth" ], function( _i, dimension ) {
 				styles = getStyles( elem ),
 
 				// Only read styles.position if the test has a chance to fail
-				// to avoId forcing a reflow.
+				// to avoid forcing a reflow.
 				scrollboxSizeBuggy = !support.scrollboxSize() &&
 					styles.position === "absolute",
 
-				// To avoId forcing a reflow, only fetch boxSizing if we need it (gh-3991)
+				// To avoid forcing a reflow, only fetch boxSizing if we need it (gh-3991)
 				boxSizingNeeded = scrollboxSizeBuggy || extra,
 				isBorderBox = boxSizingNeeded &&
 					jQuery.css( elem, "boxSizing", false, styles ) === "border-box",
@@ -8092,7 +8092,7 @@ jQuery.each( jQuery.expr.match.bool.source.match( /\w+/g ), function( _i, name )
 
 		if ( !isXML ) {
 
-			// AvoId an infinite loop by temporarily removing this function from the getter
+			// Avoid an infinite loop by temporarily removing this function from the getter
 			handle = attrHandle[ lowercaseName ];
 			attrHandle[ lowercaseName ] = ret;
 			ret = getter( elem, name, isXML ) != null ?
@@ -8291,7 +8291,7 @@ jQuery.fn.extend( {
 						}
 					}
 
-					// Only assign if different to avoId unneeded rendering.
+					// Only assign if different to avoid unneeded rendering.
 					finalValue = stripAndCollapse( cur );
 					if ( curValue !== finalValue ) {
 						elem.setAttribute( "class", finalValue );
@@ -8336,7 +8336,7 @@ jQuery.fn.extend( {
 						}
 					}
 
-					// Only assign if different to avoId unneeded rendering.
+					// Only assign if different to avoid unneeded rendering.
 					finalValue = stripAndCollapse( cur );
 					if ( curValue !== finalValue ) {
 						elem.setAttribute( "class", finalValue );
@@ -9028,7 +9028,7 @@ var
 	 */
 	transports = {},
 
-	// AvoId comment-prolog char sequence (#10098); must appease lint and evade compression
+	// Avoid comment-prolog char sequence (#10098); must appease lint and evade compression
 	allTypes = "*/".concat( "*" ),
 
 	// Anchor tag for parsing the document origin
@@ -9467,8 +9467,8 @@ jQuery.extend( {
 					return this;
 				},
 
-				// OverrIdes response content-type header
-				overrIdeMimeType: function( type ) {
+				// overrides response content-type header
+				overrideMimeType: function( type ) {
 					if ( completed == null ) {
 						s.mimeType = type;
 					}
@@ -9857,7 +9857,7 @@ jQuery._evalUrl = function( url, options, doc ) {
 	return jQuery.ajax( {
 		url: url,
 
-		// Make this explicit, since user can overrIde this through ajaxSetup (#11264)
+		// Make this explicit, since user can override this through ajaxSetup (#11264)
 		type: "GET",
 		dataType: "script",
 		cache: true,
@@ -9999,9 +9999,9 @@ jQuery.ajaxTransport( function( options ) {
 					}
 				}
 
-				// OverrIde mime type if needed
-				if ( options.mimeType && xhr.overrIdeMimeType ) {
-					xhr.overrIdeMimeType( options.mimeType );
+				// override mime type if needed
+				if ( options.mimeType && xhr.overrideMimeType ) {
+					xhr.overrideMimeType( options.mimeType );
 				}
 
 				// X-Requested-With header
@@ -10171,7 +10171,7 @@ jQuery.ajaxTransport( "script", function( s ) {
 						}
 					} );
 
-				// Use native DOM manipulation to avoId our domManip AJAX trickery
+				// Use native DOM manipulation to avoid our domManip AJAX trickery
 				document.head.appendChild( script[ 0 ] );
 			},
 			abort: function() {
@@ -10376,7 +10376,7 @@ jQuery.fn.load = function( url, params, callback ) {
 
 			// If "type" variable is undefined, then "GET" method will be used.
 			// Make value of this field explicit since
-			// user can overrIde it through ajaxSetup method
+			// user can override it through ajaxSetup method
 			type: type || "GET",
 			dataType: "html",
 			data: params
@@ -10388,7 +10388,7 @@ jQuery.fn.load = function( url, params, callback ) {
 			self.html( selector ?
 
 				// If a selector was specified, locate the right elements in a dummy div
-				// Exclude scripts to avoId IE 'Permission Denied' errors
+				// Exclude scripts to avoid IE 'Permission Denied' errors
 				jQuery( "<div>" ).append( jQuery.parseHTML( responseText ) ).find( selector ) :
 
 				// Otherwise use the full result
@@ -10825,7 +10825,7 @@ jQuery.trim = function( text ) {
 // to call noConflict to hIde this version of jQuery, it will work.
 
 // Note that for maximum portability, libraries that are not jQuery should
-// declare themselves as anonymous modules, and avoId setting a global if an
+// declare themselves as anonymous modules, and avoid setting a global if an
 // AMD loader is present. jQuery is a special case. For more information, see
 // https://github.com/jrburke/requirejs/wiki/Updating-existing-libraries#wiki-anon
 

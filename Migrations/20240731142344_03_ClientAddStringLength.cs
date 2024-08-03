@@ -6,7 +6,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Migrations
 {
     public partial class _03_ClientAddStringLength : Migration
     {
-        protected overrIde voId Up(MigrationBuilder migrationBuilder)
+        protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<string>(
                 name: "Status",
@@ -18,7 +18,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Migrations
                 oldType: "nvarchar");
         }
 
-        protected overrIde voId Down(MigrationBuilder migrationBuilder)
+        protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<string>(
                 name: "Status",

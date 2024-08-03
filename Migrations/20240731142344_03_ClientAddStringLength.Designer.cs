@@ -15,7 +15,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Migrations
     [Migration("20240731142344_03_ClientAddStringLength")]
     partial class _03_ClientAddStringLength
     {
-        protected overrIde voId BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

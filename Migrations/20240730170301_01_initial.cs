@@ -7,7 +7,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Migrations
 {
     public partial class _01_initial : Migration
     {
-        protected overrIde voId Up(MigrationBuilder migrationBuilder)
+        protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
                 name: "Client",
@@ -167,7 +167,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Migrations
                 column: "ContractId");
         }
 
-        protected overrIde voId Down(MigrationBuilder migrationBuilder)
+        protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
                 name: "ContractModality");

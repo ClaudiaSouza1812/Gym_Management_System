@@ -12,7 +12,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Methods
 
         #endregion
 
-        protected overrIde decimal CalculatePaymentApplication()
+        protected override decimal CalculatePaymentApplication()
         {
             return _payment.PaymentBaseValue * _payment.PaymentBaseRate;
         }
