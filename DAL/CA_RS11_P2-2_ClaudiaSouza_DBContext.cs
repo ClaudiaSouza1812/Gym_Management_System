@@ -29,29 +29,35 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.DAL
                     NIF = "999999999",
                     BirthDate = new DateTime(1992, 12, 18),
                     Email = "teste1@teste.com",
-                    PhoneNumber = "1234567890",
+                    PhoneNumber = "123456789",
                     Address = "Rua teste1, 123",
                     PostalCode = "9999-999",
                     City = "Coimbra",
                     Country = "Portugal",
                     CreatedAt = new DateTime(2024, 08, 03),
-                    UpdatedAt = null
+                    UpdatedAt = null,
+                    Status = Enums.EnumClientStatus.Active,
+                    PaymentType = Enums.EnumPaymentType.Monthly,
+                    Loyal = false
                 },
                 new Client
                 {
-                    Id = 1,
+                    Id = 2,
                     FirstName = "Simone",
                     LastName = "Souza",
                     NIF = "888888888",
                     BirthDate = new DateTime(1984, 12, 08),
                     Email = "teste2@teste.com",
-                    PhoneNumber = "0987654321",
+                    PhoneNumber = "987654321",
                     Address = "Rua teste2, 321",
                     PostalCode = "8888-888",
                     City = "São Paulo",
                     Country = "Brasil",
                     CreatedAt = new DateTime(2024, 08, 03),
-                    UpdatedAt = null
+                    UpdatedAt = null,
+                    Status = Enums.EnumClientStatus.Active,
+                    PaymentType = Enums.EnumPaymentType.PerSession,
+                    Loyal = false
                 });
         }
     }

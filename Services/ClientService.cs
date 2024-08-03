@@ -7,6 +7,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Services
 {
     public class ClientService : IClientServices
     {
+        /*
         private readonly IClientRepository _clientRepository;
         private readonly IClientByMonthlyPayment _clientByMonthlyPayment;
         private readonly IClientByPerSessionPayment _clientByPerSessionPayment;
@@ -33,5 +34,6 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Services
         {
             return _clientByPerSessionPayment.GetClientByPerSessionPayment();
         }
+        */
     }
 }

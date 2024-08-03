@@ -6,6 +6,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Interfaces.IRepositories
     // This class will interact with the database
     public abstract class ClientRepository : IClientRepository
     {
+        /*
         #region Fields
 
         protected readonly List<Client> _clients = new List<Client>();
@@ -20,5 +21,6 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Interfaces.IRepositories
         }
 
         #endregion
+        */
     }
 }
