@@ -13,7 +13,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Migrations
     [DbContext(typeof(CA_RS11_P2_2_ClaudiaSouza_DBContext))]
     partial class CA_RS11_P2_2_ClaudiaSouza_DBContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected overrIde voId BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -169,11 +169,11 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Migrations
 
             modelBuilder.Entity("P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models.Modality", b =>
                 {
-                    b.Property<int>("ModalityID")
+                    b.Property<int>("ModalityId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ModalityID"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ModalityId"), 1L, 1);
 
                     b.Property<int>("ModalityName")
                         .HasColumnType("int");
@@ -181,18 +181,18 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Migrations
                     b.Property<int>("ModalityPackage")
                         .HasColumnType("int");
 
-                    b.HasKey("ModalityID");
+                    b.HasKey("ModalityId");
 
                     b.ToTable("Modality");
                 });
 
             modelBuilder.Entity("P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models.Payment", b =>
                 {
-                    b.Property<int>("PaymentID")
+                    b.Property<int>("PaymentId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PaymentID"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PaymentId"), 1L, 1);
 
                     b.Property<int>("ContractId")
                         .HasColumnType("int");
@@ -212,7 +212,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Migrations
                     b.Property<int>("PaymentType")
                         .HasColumnType("int");
 
-                    b.HasKey("PaymentID");
+                    b.HasKey("PaymentId");
 
                     b.HasIndex("ContractId");
 

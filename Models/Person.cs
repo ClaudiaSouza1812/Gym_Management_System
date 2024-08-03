@@ -11,7 +11,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
         #region Scalar Properties
 
         [Key]
-        [DisplayName("ID")]
+        [DisplayName("Id")]
         public int Id { get; set; }
 
         [Required(ErrorMessage = "The field 'Name' is mandatory.")]

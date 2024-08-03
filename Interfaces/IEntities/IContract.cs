@@ -6,8 +6,8 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Interfaces.IEntities
     {
         #region Scalar Properties
 
-        // SOLID Principle: Interface Segregation
-        // Reason: Provides a focused interface with only the necessary properties
+        // SOLId Principle: Interface Segregation
+        // Reason: ProvIdes a focused interface with only the necessary properties
         int ContractId { get; }
         int ClientId { get; }
         int MembershipId { get; }

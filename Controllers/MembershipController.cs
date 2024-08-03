@@ -28,15 +28,15 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
         }
 
         // GET: Membership/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int? Id)
         {
-            if (id == null || _context.Membership == null)
+            if (Id == null || _context.Membership == null)
             {
                 return NotFound();
             }
 
             var membership = await _context.Membership
-                .FirstOrDefaultAsync(m => m.MembershipId == id);
+                .FirstOrDefaultAsync(m => m.MembershipId == Id);
             if (membership == null)
             {
                 return NotFound();
@@ -55,10 +55,10 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [ValIdateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("MembershipId,IsLoyal,Discount,StartDate,EndDate")] Membership membership)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValId)
             {
                 _context.Add(membership);
                 await _context.SaveChangesAsync();
@@ -68,14 +68,14 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
         }
 
         // GET: Membership/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(int? Id)
         {
-            if (id == null || _context.Membership == null)
+            if (Id == null || _context.Membership == null)
             {
                 return NotFound();
             }
 
-            var membership = await _context.Membership.FindAsync(id);
+            var membership = await _context.Membership.FindAsync(Id);
             if (membership == null)
             {
                 return NotFound();
@@ -87,15 +87,15 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("MembershipId,IsLoyal,Discount,StartDate,EndDate")] Membership membership)
+        [ValIdateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int Id, [Bind("MembershipId,IsLoyal,Discount,StartDate,EndDate")] Membership membership)
         {
-            if (id != membership.MembershipId)
+            if (Id != membership.MembershipId)
             {
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            if (ModelState.IsValId)
             {
                 try
                 {
@@ -119,15 +119,15 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
         }
 
         // GET: Membership/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(int? Id)
         {
-            if (id == null || _context.Membership == null)
+            if (Id == null || _context.Membership == null)
             {
                 return NotFound();
             }
 
             var membership = await _context.Membership
-                .FirstOrDefaultAsync(m => m.MembershipId == id);
+                .FirstOrDefaultAsync(m => m.MembershipId == Id);
             if (membership == null)
             {
                 return NotFound();
@@ -138,14 +138,14 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
 
         // POST: Membership/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        [ValIdateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int Id)
         {
             if (_context.Membership == null)
             {
                 return Problem("Entity set 'CA_RS11_P2_2_ClaudiaSouza_DBContext.Membership'  is null.");
             }
-            var membership = await _context.Membership.FindAsync(id);
+            var membership = await _context.Membership.FindAsync(Id);
             if (membership != null)
             {
                 _context.Membership.Remove(membership);
@@ -155,9 +155,9 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool MembershipExists(int id)
+        private bool MembershipExists(int Id)
         {
-          return (_context.Membership?.Any(e => e.MembershipId == id)).GetValueOrDefault();
+          return (_context.Membership?.Any(e => e.MembershipId == Id)).GetValueOrDefault();
         }
     }
 }

@@ -28,15 +28,15 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
         }
 
         // GET: Client/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int? Id)
         {
-            if (id == null || _context.Client == null)
+            if (Id == null || _context.Client == null)
             {
                 return NotFound();
             }
 
             var client = await _context.Client
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.Id == Id);
             if (client == null)
             {
                 return NotFound();
@@ -55,10 +55,10 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [ValIdateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Status,Id,FirstName,LastName,NIF,BirthDate,Email,PhoneNumber,Address,PostalCode,City,Country,CreatedAt,UpdatedAt")] Client client)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValId)
             {
                 _context.Add(client);
                 await _context.SaveChangesAsync();
@@ -68,14 +68,14 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
         }
 
         // GET: Client/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(int? Id)
         {
-            if (id == null || _context.Client == null)
+            if (Id == null || _context.Client == null)
             {
                 return NotFound();
             }
 
-            var client = await _context.Client.FindAsync(id);
+            var client = await _context.Client.FindAsync(Id);
             if (client == null)
             {
                 return NotFound();
@@ -87,15 +87,15 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Status,Id,FirstName,LastName,NIF,BirthDate,Email,PhoneNumber,Address,PostalCode,City,Country,CreatedAt,UpdatedAt")] Client client)
+        [ValIdateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int Id, [Bind("Status,Id,FirstName,LastName,NIF,BirthDate,Email,PhoneNumber,Address,PostalCode,City,Country,CreatedAt,UpdatedAt")] Client client)
         {
-            if (id != client.Id)
+            if (Id != client.Id)
             {
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            if (ModelState.IsValId)
             {
                 try
                 {
@@ -119,15 +119,15 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
         }
 
         // GET: Client/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(int? Id)
         {
-            if (id == null || _context.Client == null)
+            if (Id == null || _context.Client == null)
             {
                 return NotFound();
             }
 
             var client = await _context.Client
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.Id == Id);
             if (client == null)
             {
                 return NotFound();
@@ -138,14 +138,14 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
 
         // POST: Client/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        [ValIdateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int Id)
         {
             if (_context.Client == null)
             {
                 return Problem("Entity set 'CA_RS11_P2_2_ClaudiaSouza_DBContext.Client'  is null.");
             }
-            var client = await _context.Client.FindAsync(id);
+            var client = await _context.Client.FindAsync(Id);
             if (client != null)
             {
                 _context.Client.Remove(client);
@@ -155,9 +155,9 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ClientExists(int id)
+        private bool ClientExists(int Id)
         {
-          return (_context.Client?.Any(e => e.Id == id)).GetValueOrDefault();
+          return (_context.Client?.Any(e => e.Id == Id)).GetValueOrDefault();
         }
     }
 }

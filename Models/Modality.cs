@@ -10,8 +10,8 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
     {
         #region Scalar Properties
         [Key]
-        [DisplayName("Modality ID")]
-        public int ModalityID { get; set; }
+        [DisplayName("Modality Id")]
+        public int ModalityId { get; set; }
 
         [Required(ErrorMessage = "Modality Name is required")]
         [Column(TypeName = "int")]
@@ -37,8 +37,6 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
 
         public Modality()
         {
-            ModalityName = new EnumModalityName();
-            ModalityPackage = EnumModalityPackage.OneModality;
             ContractModalities = new List<ContractModality>();
         }
 

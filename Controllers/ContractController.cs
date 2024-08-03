@@ -27,9 +27,9 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
         }
 
         // GET: Contract/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int? Id)
         {
-            if (id == null || _context.Contract == null)
+            if (Id == null || _context.Contract == null)
             {
                 return NotFound();
             }
@@ -37,7 +37,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
             var contract = await _context.Contract
                 .Include(c => c.Client)
                 .Include(c => c.Membership)
-                .FirstOrDefaultAsync(m => m.ContractId == id);
+                .FirstOrDefaultAsync(m => m.ContractId == Id);
             if (contract == null)
             {
                 return NotFound();
@@ -58,13 +58,13 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [ValIdateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ClientId,MembershipId,ContractDate")] Contract contract)
         {
             Console.WriteLine($"Received Contract: ClientId={contract.ClientId}, MembershipId={contract.MembershipId}, ContractDate={contract.ContractDate}");
 
 
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValId)
             {
                 foreach (var modelState in ViewData.ModelState.Values)
                 {
@@ -75,7 +75,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
                 }
             }
 
-            if (ModelState.IsValid)
+            if (ModelState.IsValId)
             {
                 _context.Add(contract);
                 await _context.SaveChangesAsync();
@@ -89,14 +89,14 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
         }
 
         // GET: Contract/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(int? Id)
         {
-            if (id == null || _context.Contract == null)
+            if (Id == null || _context.Contract == null)
             {
                 return NotFound();
             }
 
-            var contract = await _context.Contract.FindAsync(id);
+            var contract = await _context.Contract.FindAsync(Id);
             if (contract == null)
             {
                 return NotFound();
@@ -110,15 +110,15 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ContractId,ClientId,MembershipId,ContractDate")] Contract contract)
+        [ValIdateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int Id, [Bind("ContractId,ClientId,MembershipId,ContractDate")] Contract contract)
         {
-            if (id != contract.ContractId)
+            if (Id != contract.ContractId)
             {
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            if (ModelState.IsValId)
             {
                 try
                 {
@@ -144,9 +144,9 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
         }
 
         // GET: Contract/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(int? Id)
         {
-            if (id == null || _context.Contract == null)
+            if (Id == null || _context.Contract == null)
             {
                 return NotFound();
             }
@@ -154,7 +154,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
             var contract = await _context.Contract
                 .Include(c => c.Client)
                 .Include(c => c.Membership)
-                .FirstOrDefaultAsync(m => m.ContractId == id);
+                .FirstOrDefaultAsync(m => m.ContractId == Id);
             if (contract == null)
             {
                 return NotFound();
@@ -165,14 +165,14 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
 
         // POST: Contract/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        [ValIdateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int Id)
         {
             if (_context.Contract == null)
             {
                 return Problem("Entity set 'CA_RS11_P2_2_ClaudiaSouza_DBContext.Contract'  is null.");
             }
-            var contract = await _context.Contract.FindAsync(id);
+            var contract = await _context.Contract.FindAsync(Id);
             if (contract != null)
             {
                 _context.Contract.Remove(contract);
@@ -182,9 +182,9 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ContractExists(int id)
+        private bool ContractExists(int Id)
         {
-          return (_context.Contract?.Any(e => e.ContractId == id)).GetValueOrDefault();
+          return (_context.Contract?.Any(e => e.ContractId == Id)).GetValueOrDefault();
         }
     }
 }

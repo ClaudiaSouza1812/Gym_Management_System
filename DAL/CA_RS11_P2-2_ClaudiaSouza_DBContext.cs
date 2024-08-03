@@ -14,7 +14,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.DAL
         public virtual DbSet<Modality> Modality { get; set; } = null!;
         public virtual DbSet<ContractModality> ContractModality { get; set; } = null!;
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected overrIde voId OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 

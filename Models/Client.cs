@@ -19,6 +19,17 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
         [EnumDataType(typeof(EnumClientStatus))]
         public EnumClientStatus Status { get; set; }
 
+        [Required(ErrorMessage = "Payment Type is required")]
+        [Column(TypeName = "int")]
+        [DisplayName("Payment Type")]
+        [EnumDataType(typeof(EnumPaymentType))]
+        public EnumPaymentType PaymentType { get; set; }
+
+        [Required(ErrorMessage = "The field 'Loyal Member' is mandatory.")]
+        [Column(TypeName = "bit")]
+        [DisplayName("Loyal Member")]
+        public bool Loyal { get; set; }
+
         #endregion
 
         #region Navigation Properties

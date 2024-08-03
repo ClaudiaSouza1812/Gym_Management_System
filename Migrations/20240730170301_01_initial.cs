@@ -7,7 +7,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Migrations
 {
     public partial class _01_initial : Migration
     {
-        protected override void Up(MigrationBuilder migrationBuilder)
+        protected overrIde voId Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
                 name: "Client",
@@ -54,14 +54,14 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Migrations
                 name: "Modality",
                 columns: table => new
                 {
-                    ModalityID = table.Column<int>(type: "int", nullable: false)
+                    ModalityId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ModalityName = table.Column<string>(type: "nvarchar", nullable: false),
                     ModalityPackage = table.Column<string>(type: "nvarchar", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Modality", x => x.ModalityID);
+                    table.PrimaryKey("PK_Modality", x => x.ModalityId);
                 });
 
             migrationBuilder.CreateTable(
@@ -113,7 +113,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Migrations
                         name: "FK_ContractModality_Modality_ModalityId",
                         column: x => x.ModalityId,
                         principalTable: "Modality",
-                        principalColumn: "ModalityID",
+                        principalColumn: "ModalityId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -121,7 +121,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Migrations
                 name: "Payment",
                 columns: table => new
                 {
-                    PaymentID = table.Column<int>(type: "int", nullable: false)
+                    PaymentId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ContractId = table.Column<int>(type: "int", nullable: false),
                     PaymentType = table.Column<string>(type: "nvarchar", nullable: false),
@@ -132,7 +132,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Payment", x => x.PaymentID);
+                    table.PrimaryKey("PK_Payment", x => x.PaymentId);
                     table.ForeignKey(
                         name: "FK_Payment_Contract_ContractId",
                         column: x => x.ContractId,
@@ -167,7 +167,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Migrations
                 column: "ContractId");
         }
 
-        protected override void Down(MigrationBuilder migrationBuilder)
+        protected overrIde voId Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
                 name: "ContractModality");

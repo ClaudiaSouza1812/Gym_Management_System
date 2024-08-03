@@ -11,18 +11,12 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
         #region Scalar Properties
 
         [Key]
-        [DisplayName("Payment ID")]
-        public int PaymentID { get; set; }
+        [DisplayName("Payment Id")]
+        public int PaymentId { get; set; }
 
         [Required]
-        [ForeignKey("Contract")]
+        [ForeignKey("Contract Id")]
         public int ContractId { get; set; }
-
-        [Required(ErrorMessage = "Payment Type is required")]
-        [Column(TypeName = "int")]
-        [DisplayName("Payment Type")]
-        [EnumDataType(typeof(EnumPaymentType))]
-        public EnumPaymentType PaymentType { get; set; }
 
         [Column(TypeName = "decimal(6,2)")]
         [DisplayName("Payment Base Value")]
@@ -32,16 +26,19 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
         [DisplayName("Payment Rate")]
         public decimal PaymentBaseRate { get; set; }
 
-        [Column(TypeName = "decimal(6,2)")]
-        [DisplayName("Payment Total Value")]
-        public decimal PaymentTotalValue { get; set; }
-
         [Column(TypeName = "date")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         [DisplayName("Payment Date")]
         public DateTime PaymentDate { get; set; }
 
         #endregion
+
+        #region Computed Property
+
+        public decimal PaymentTotalValue => PaymentBaseValue * PaymentBaseRate;
+
+        #endregion
+
 
         #region Navigation Properties
 
@@ -53,19 +50,13 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
 
         public Payment()
         {
-            PaymentType = EnumPaymentType.PerSession;
-            PaymentBaseValue = 0;
-            PaymentBaseRate = 0;
-            PaymentTotalValue = 0;
-            PaymentDate = DateTime.UtcNow;
+        
         }
 
-        public Payment(EnumPaymentType paymentType, decimal paymentBaseValue,  decimal paymentBaseRate, DateTime paymentDate)
+        public Payment(decimal paymentBaseValue,  decimal paymentBaseRate, DateTime paymentDate)
         {
-            PaymentType = paymentType;
             PaymentBaseValue = paymentBaseValue;
             PaymentBaseRate = paymentBaseRate;
-            PaymentTotalValue = paymentBaseValue * paymentBaseRate;
             PaymentDate = paymentDate;
         }
 

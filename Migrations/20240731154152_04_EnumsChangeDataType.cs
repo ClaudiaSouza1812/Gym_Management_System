@@ -6,7 +6,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Migrations
 {
     public partial class _04_EnumsChangeDataType : Migration
     {
-        protected override void Up(MigrationBuilder migrationBuilder)
+        protected overrIde voId Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<int>(
                 name: "PaymentType",
@@ -43,7 +43,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Migrations
                 oldMaxLength: 30);
         }
 
-        protected override void Down(MigrationBuilder migrationBuilder)
+        protected overrIde voId Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<string>(
                 name: "PaymentType",

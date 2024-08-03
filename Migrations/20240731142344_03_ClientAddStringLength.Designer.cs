@@ -15,7 +15,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Migrations
     [Migration("20240731142344_03_ClientAddStringLength")]
     partial class _03_ClientAddStringLength
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected overrIde voId BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -172,11 +172,11 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Migrations
 
             modelBuilder.Entity("P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models.Modality", b =>
                 {
-                    b.Property<int>("ModalityID")
+                    b.Property<int>("ModalityId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ModalityID"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ModalityId"), 1L, 1);
 
                     b.Property<string>("ModalityName")
                         .IsRequired()
@@ -186,18 +186,18 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar");
 
-                    b.HasKey("ModalityID");
+                    b.HasKey("ModalityId");
 
                     b.ToTable("Modality");
                 });
 
             modelBuilder.Entity("P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models.Payment", b =>
                 {
-                    b.Property<int>("PaymentID")
+                    b.Property<int>("PaymentId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PaymentID"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PaymentId"), 1L, 1);
 
                     b.Property<int>("ContractId")
                         .HasColumnType("int");
@@ -218,7 +218,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar");
 
-                    b.HasKey("PaymentID");
+                    b.HasKey("PaymentId");
 
                     b.HasIndex("ContractId");
 
