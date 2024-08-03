@@ -140,12 +140,12 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Migrations
             migrationBuilder.InsertData(
                 table: "Client",
                 columns: new[] { "Id", "Address", "BirthDate", "City", "Country", "CreatedAt", "Email", "FirstName", "LastName", "Loyal", "NIF", "PaymentType", "PhoneNumber", "PostalCode", "Status", "UpdatedAt" },
-                values: new object[] { 1, "Rua teste1, 123", new DateTime(1992, 12, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), "Coimbra", "Portugal", new DateTime(2024, 8, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), "teste1@teste.com", "Claudia", "Souza", false, "999999999", 0, "123456789", "9999-999", 1, null });
+                values: new object[] { 1, "Rua teste1, 123", new DateTime(1992, 12, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), "Coimbra", "Portugal", new DateTime(2024, 8, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), "teste1@teste.com", "Claudia", "Souza", false, "999999999", 2, "123456789", "9999-999", 1, null });
 
             migrationBuilder.InsertData(
                 table: "Client",
                 columns: new[] { "Id", "Address", "BirthDate", "City", "Country", "CreatedAt", "Email", "FirstName", "LastName", "Loyal", "NIF", "PaymentType", "PhoneNumber", "PostalCode", "Status", "UpdatedAt" },
-                values: new object[] { 2, "Rua teste2, 321", new DateTime(1984, 12, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), "São Paulo", "Brasil", new DateTime(2024, 8, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), "teste2@teste.com", "Simone", "Souza", false, "888888888", 0, "987654321", "8888-888", 1, null });
+                values: new object[] { 2, "Rua teste2, 321", new DateTime(1984, 12, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), "São Paulo", "Brasil", new DateTime(2024, 8, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), "teste2@teste.com", "Simone", "Souza", false, "888888888", 3, "987654321", "8888-888", 1, null });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Contract_ClientId",

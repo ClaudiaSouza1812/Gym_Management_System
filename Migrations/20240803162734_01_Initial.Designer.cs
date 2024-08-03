@@ -12,8 +12,8 @@ using P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.DAL;
 namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Migrations
 {
     [DbContext(typeof(CA_RS11_P2_2_ClaudiaSouza_DBContext))]
-    [Migration("20240803161007_02_AddTwoDefaultClients")]
-    partial class _02_AddTwoDefaultClients
+    [Migration("20240803162734_01_Initial")]
+    partial class _01_Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
