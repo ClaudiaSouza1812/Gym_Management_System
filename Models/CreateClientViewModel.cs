@@ -3,10 +3,10 @@
     public class CreateClientViewModel
     {
         public Client Client { get; set; } = new Client();
-        public List<Membership> Membership { get; set; } = new List<Membership>();
+        public List<Membership> MembershipOptions { get; set; } = new List<Membership>();
         public List<Contract> Contract { get; set; } = new List<Contract>();
         public List<Payment> Payment { get; set; } = new List<Payment>();
-        public List<Modality> Modality { get; set; } = new List<Modality>();
+        public List<Modality> ModalityOptions { get; set; } = new List<Modality>();
 
     }
 }
