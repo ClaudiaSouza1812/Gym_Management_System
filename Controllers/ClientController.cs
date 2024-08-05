@@ -48,11 +48,8 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
         // GET: Client/Create
         public IActionResult Create()
         {
-            var viewModel = new CreateClientViewModel
-            {
-                MembershipOptions = _context.Membership.ToList(),
-                ModalityOptions = _context.Modality.ToList()
-            };
+            var viewModel = new CreateClientViewModel();
+            
             return View(viewModel);
         }
 
@@ -82,46 +79,6 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
                     Loyal = viewModel.Client.Loyal
                 };
                 _context.Client.Add(newClient);
-                await _context.SaveChangesAsync();
-
-                foreach (var contractViewModel in viewModel.Contract)
-                {
-                    var newMembership = new Membership
-                    {
-                        Discount = contractViewModel.Membership.Discount,
-                        StartDate = contractViewModel.Membership.StartDate,
-                    };
-                    _context.Add(newMembership);
-
-                    var newContract = new Contract
-                    {
-                        ClientId = newClient.Id,
-                        MembershipId = newMembership.MembershipId,
-                        ContractDate = contractViewModel.ContractDate
-                    };
-                    _context.Add(newContract);
-
-                    foreach (var paymentViewModel in viewModel.Payment)
-                    {
-                        var newPayment = new Payment
-                        {
-                            ContractId = newContract.ContractId,
-                            PaymentDate = paymentViewModel.PaymentDate,
-                        };
-                        _context.Add(newPayment);
-                    }
-                }
-
-                foreach (var modalityViewModel in viewModel.ModalityOptions)
-                {
-                    var newModality = new Modality
-                    {
-                        ModalityName = modalityViewModel.ModalityName,
-                        ModalityPackage = modalityViewModel.ModalityPackage,
-                    };
-                    _context.Add(newModality);
-                }
-
                 await _context.SaveChangesAsync();
 
                 return RedirectToAction(nameof(Index));

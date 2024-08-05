@@ -48,7 +48,9 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
         // GET: Membership/Create
         public IActionResult Create()
         {
-            return View();
+            var viewModel = new CreateClientViewModel();
+
+            return View(viewModel);
         }
 
         // POST: Membership/Create
@@ -56,15 +58,22 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MembershipId,Discount,StartDate")] Membership membership)
+        public async Task<IActionResult> Create(CreateClientViewModel viewModel)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(membership);
+                var newMembership = new Membership
+                { 
+                    Discount = viewModel.Membership.Discount,
+                    StartDate = viewModel.Membership.StartDate
+                };
+
+                _context.Membership.Add(newMembership);
                 await _context.SaveChangesAsync();
+
                 return RedirectToAction(nameof(Index));
             }
-            return View(membership);
+            return View(viewModel);
         }
 
         // GET: Membership/Edit/5
