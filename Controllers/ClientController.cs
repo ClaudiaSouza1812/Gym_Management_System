@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -48,8 +49,15 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
         // GET: Client/Create
         public IActionResult Create()
         {
-            var viewModel = new CreateClientViewModel();
-            
+            var viewModel = new CreateClientViewModel
+            {
+                Client = new Client(),
+                Membership = new Membership(),
+                Contract = new Contract(),
+                Payment = new Payment(),
+                Modality = new Modality()
+            };
+
             return View(viewModel);
         }
 
@@ -60,55 +68,86 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CreateClientViewModel viewModel)
         {
+            Console.WriteLine("Received Data:");
+            Console.WriteLine($"Client Status: {viewModel.Client.Status}");
+            Console.WriteLine($"Client FirstName: {viewModel.Client.FirstName}");
+            Console.WriteLine($"Client LastName: {viewModel.Client.LastName}");
+            Console.WriteLine($"Client NIF: {viewModel.Client.NIF}");
+            Console.WriteLine($"Client BirthDate: {viewModel.Client.BirthDate}");
+            Console.WriteLine($"Client Email: {viewModel.Client.Email}");
+            Console.WriteLine($"Client PhoneNumber: {viewModel.Client.PhoneNumber}");
+            Console.WriteLine($"Client PaymentType: {viewModel.Client.PaymentType}");
+            Console.WriteLine($"Client Loyal: {viewModel.Client.Loyal}");
+
+            Console.WriteLine($"Membership Discount: {viewModel.Membership.Discount}");
+            Console.WriteLine($"Membership StartDate: {viewModel.Membership.StartDate}");
+
+            Console.WriteLine($"Contract ContractDate: {viewModel.Contract.ContractDate}");
+
+            Console.WriteLine($"Payment PaymentDate: {viewModel.Payment.PaymentDate}");
+
+            Console.WriteLine($"Modality ModalityName: {viewModel.Modality.ModalityName}");
+            Console.WriteLine($"Modality ModalityPackage: {viewModel.Modality.ModalityPackage}");
+
+            ModelState.Clear();
+            TryValidateModel(viewModel);
+
             if (ModelState.IsValid)
             {
-                var newClient = new Client
+                try
                 {
-                    FirstName = viewModel.Client.FirstName,
-                    LastName = viewModel.Client.LastName,
-                    NIF = viewModel.Client.NIF,
-                    BirthDate = viewModel.Client.BirthDate,
-                    Email = viewModel.Client.Email,
-                    PhoneNumber = viewModel.Client.PhoneNumber,
-                    Address = viewModel.Client.Address,
-                    PostalCode = viewModel.Client.PostalCode,
-                    City = viewModel.Client.City,
-                    Country = viewModel.Client.Country,
-                    Status = viewModel.Client.Status,
-                    PaymentType = viewModel.Client.PaymentType,
-                    Loyal = viewModel.Client.Loyal
-                };
-                _context.Client.Add(newClient);
-                await _context.SaveChangesAsync();
+                    _context.Client.Add(viewModel.Client);
+                    await _context.SaveChangesAsync();
 
-                var newMembership = new Membership
+                    _context.Membership.Add(viewModel.Membership);
+                    await _context.SaveChangesAsync();
+
+                    var newContract = new Contract
+                    {
+                        ClientId = viewModel.Client.Id,
+                        MembershipId = viewModel.Membership.MembershipId,
+                        ContractDate = viewModel.Contract.ContractDate
+                    };
+                    _context.Contract.Add(newContract);
+                    await _context.SaveChangesAsync();
+
+                    var newPayment = new Payment
+                    {
+                        ContractId = newContract.ContractId,
+                        PaymentDate = viewModel.Payment.PaymentDate
+                    };
+                    _context.Payment.Add(newPayment);
+                    await _context.SaveChangesAsync();
+
+                    var newModality = new Modality
+                    {
+                        ModalityName = viewModel.Modality.ModalityName,
+                        ModalityPackage = viewModel.Modality.ModalityPackage
+                    };
+                    _context.Modality.Add(newModality);
+                    await _context.SaveChangesAsync();
+
+                    return RedirectToAction(nameof(Index));
+                }
+                catch (Exception ex)
                 {
-                    Discount = viewModel.Membership.Discount,
-                    StartDate = viewModel.Membership.StartDate,
-                };
-                _context.Add(newMembership);
-                await _context.SaveChangesAsync();
-
-                var newContract = new Contract
-                {
-                    ClientId = newClient.Id,
-                    MembershipId = newMembership.MembershipId,
-                    ContractDate = viewModel.Contract.ContractDate
-                };
-                _context.Add(newContract);
-                await _context.SaveChangesAsync();
-
-                var newPayment = new Payment
-                {
-                    ContractId = newContract.ContractId,
-                    PaymentDate = viewModel.Payment.PaymentDate,
-                };
-                _context.Add(newPayment);
-                await _context.SaveChangesAsync();
-
-                return RedirectToAction(nameof(Index));
-
+                    // Log the exception
+                    Debug.WriteLine($"An error occurred: {ex.Message}");
+                    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
+                }
             }
+            else
+            {
+                Console.WriteLine("ModelState is invalid");
+                foreach (var modelState in ModelState.Values)
+                {
+                    foreach (var error in modelState.Errors)
+                    {
+                        Console.WriteLine(error.ErrorMessage);
+                    }
+                }
+            }
+
             return View(viewModel);
         }
 

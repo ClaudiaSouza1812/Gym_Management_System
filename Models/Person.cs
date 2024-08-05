@@ -101,7 +101,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
             City = string.Empty;
             Country = string.Empty;
             CreatedAt = DateTime.Now;
-            UpdatedAt = null;
+            UpdatedAt = DateTime.Now;
         }
 
         public Person(string firstName, string lastName, string nif, DateTime birthDate, string email, string phoneNumber, string address, string postalCode, string city, string country)

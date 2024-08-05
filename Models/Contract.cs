@@ -49,18 +49,18 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
         public Contract()
         {
             ContractDate = new DateTime();
+            Client = new Client();
+            Membership = new Membership();
             Payments = new List<Payment>();
             ContractModalities = new List<ContractModality>();
         }
 
         // Constructor for existent contracts
-        public Contract(DateTime contractDate, int clienteId, int membershipId)
+        public Contract(DateTime contractDate, int clienteId, int membershipId) : this()
         { 
             ClientId = clienteId;
             MembershipId = membershipId;
             ContractDate = contractDate;
-            Payments = new List <Payment>();
-            ContractModalities = new List<ContractModality>();
         }
 
         #endregion

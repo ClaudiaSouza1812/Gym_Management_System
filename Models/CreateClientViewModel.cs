@@ -2,11 +2,11 @@
 {
     public class CreateClientViewModel
     {
-        public Client Client { get; set; } = new Client();
-        public Membership Membership { get; set; } = new Membership();
-        public Contract Contract { get; set; } = new Contract();
-        public Payment Payment { get; set; } = new Payment();
-        public Modality Modality { get; set; } = new Modality();
+        public Client Client { get; set; } 
+        public Membership Membership { get; set; } 
+        public Contract Contract { get; set; } 
+        public Payment Payment { get; set; } 
+        public Modality Modality { get; set; } 
 
     }
 }

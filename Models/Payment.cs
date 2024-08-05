@@ -50,10 +50,10 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
 
         public Payment()
         {
-        
+            Contract = new Contract();
         }
 
-        public Payment(decimal paymentBaseValue,  decimal paymentBaseRate, DateTime paymentDate)
+        public Payment(decimal paymentBaseValue,  decimal paymentBaseRate, DateTime paymentDate) : this()
         {
             PaymentBaseValue = paymentBaseValue;
             PaymentBaseRate = paymentBaseRate;
