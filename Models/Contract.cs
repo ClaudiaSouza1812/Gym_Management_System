@@ -48,9 +48,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
         // Constructor for new contracts
         public Contract()
         {
-            ContractDate = new DateTime();
-            Client = new Client();
-            Membership = new Membership();
+            ContractDate = DateTime.Now;
             Payments = new List<Payment>();
             ContractModalities = new List<ContractModality>();
         }

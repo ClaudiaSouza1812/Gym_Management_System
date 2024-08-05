@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -53,8 +54,10 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
             {
                 Client = new Client(),
                 Membership = new Membership(),
-                Contract = new Contract(),
-                Payment = new Payment(),
+                ContractDate = DateTime.Now,
+                PaymentDate = DateTime.Now,
+                PaymentBaseValue = 0,
+                PaymentBaseRate = 0,
                 Modality = new Modality()
             };
 
@@ -69,33 +72,33 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
         public async Task<IActionResult> Create(CreateClientViewModel viewModel)
         {
             Console.WriteLine("Received Data:");
-            Console.WriteLine($"Client Status: {viewModel.Client.Status}");
-            Console.WriteLine($"Client FirstName: {viewModel.Client.FirstName}");
-            Console.WriteLine($"Client LastName: {viewModel.Client.LastName}");
-            Console.WriteLine($"Client NIF: {viewModel.Client.NIF}");
-            Console.WriteLine($"Client BirthDate: {viewModel.Client.BirthDate}");
-            Console.WriteLine($"Client Email: {viewModel.Client.Email}");
-            Console.WriteLine($"Client PhoneNumber: {viewModel.Client.PhoneNumber}");
-            Console.WriteLine($"Client PaymentType: {viewModel.Client.PaymentType}");
-            Console.WriteLine($"Client Loyal: {viewModel.Client.Loyal}");
+            Console.WriteLine(JsonSerializer.Serialize(viewModel, new JsonSerializerOptions { WriteIndented = true }));
 
-            Console.WriteLine($"Membership Discount: {viewModel.Membership.Discount}");
-            Console.WriteLine($"Membership StartDate: {viewModel.Membership.StartDate}");
-
-            Console.WriteLine($"Contract ContractDate: {viewModel.Contract.ContractDate}");
-
-            Console.WriteLine($"Payment PaymentDate: {viewModel.Payment.PaymentDate}");
-
-            Console.WriteLine($"Modality ModalityName: {viewModel.Modality.ModalityName}");
-            Console.WriteLine($"Modality ModalityPackage: {viewModel.Modality.ModalityPackage}");
-
-            ModelState.Clear();
-            TryValidateModel(viewModel);
+            // Log ModelState details
+            Console.WriteLine("ModelState Details:");
+            foreach (var key in ModelState.Keys)
+            {
+                var modelStateEntry = ModelState[key];
+                Console.WriteLine($"Key: {key}");
+                Console.WriteLine($"  Is Valid: {modelStateEntry.ValidationState == Microsoft.AspNetCore.Mvc.ModelBinding.ModelValidationState.Valid}");
+                Console.WriteLine($"  Raw Value: {modelStateEntry.RawValue}");
+                foreach (var error in modelStateEntry.Errors)
+                {
+                    Console.WriteLine($"  Error: {error.ErrorMessage}");
+                }
+            }
 
             if (ModelState.IsValid)
             {
                 try
                 {
+                    var existingClient = await _context.Client.FirstOrDefaultAsync(c => c.NIF == viewModel.Client.NIF);
+                    if (existingClient != null)
+                    {
+                        ModelState.AddModelError("Client.NIF", "A client with this NIF already exists.");
+                        return View(viewModel);
+                    }
+
                     _context.Client.Add(viewModel.Client);
                     await _context.SaveChangesAsync();
 
@@ -106,15 +109,18 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
                     {
                         ClientId = viewModel.Client.Id,
                         MembershipId = viewModel.Membership.MembershipId,
-                        ContractDate = viewModel.Contract.ContractDate
+                        ContractDate = viewModel.ContractDate
                     };
                     _context.Contract.Add(newContract);
                     await _context.SaveChangesAsync();
 
-                    var newPayment = new Payment
+                    var newPayment = new Payment(
+                    
+                        viewModel.PaymentBaseValue,
+                        viewModel.PaymentBaseRate,
+                        viewModel.PaymentDate)
                     {
-                        ContractId = newContract.ContractId,
-                        PaymentDate = viewModel.Payment.PaymentDate
+                        ContractId = newContract.ContractId
                     };
                     _context.Payment.Add(newPayment);
                     await _context.SaveChangesAsync();

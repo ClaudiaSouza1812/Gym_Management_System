@@ -10,7 +10,11 @@ var connectionString = builder.Configuration.GetConnectionString("CA_RS11_P2-2_C
 builder.Services.AddDbContext<CA_RS11_P2_2_ClaudiaSouza_DBContext>(options => options.UseSqlServer(connectionString));
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews(options =>
+{
+    options.ModelBindingMessageProvider.SetValueMustNotBeNullAccessor(
+        _ => "The field is required.");
+});
 
 var app = builder.Build();
 

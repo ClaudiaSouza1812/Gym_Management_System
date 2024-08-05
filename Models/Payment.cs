@@ -48,12 +48,9 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
 
         #region Constructors
 
-        public Payment()
-        {
-            Contract = new Contract();
-        }
+        public Payment(){}
 
-        public Payment(decimal paymentBaseValue,  decimal paymentBaseRate, DateTime paymentDate) : this()
+        public Payment(decimal paymentBaseValue,  decimal paymentBaseRate, DateTime paymentDate)
         {
             PaymentBaseValue = paymentBaseValue;
             PaymentBaseRate = paymentBaseRate;
