@@ -81,6 +81,31 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
                 _context.Client.Add(newClient);
                 await _context.SaveChangesAsync();
 
+                var newMembership = new Membership
+                {
+                    Discount = viewModel.Membership.Discount,
+                    StartDate = viewModel.Membership.StartDate,
+                };
+                _context.Add(newMembership);
+                await _context.SaveChangesAsync();
+
+                var newContract = new Contract
+                {
+                    ClientId = newClient.Id,
+                    MembershipId = newMembership.MembershipId,
+                    ContractDate = viewModel.Contract.ContractDate
+                };
+                _context.Add(newContract);
+                await _context.SaveChangesAsync();
+
+                var newPayment = new Payment
+                {
+                    ContractId = newContract.ContractId,
+                    PaymentDate = viewModel.Payment.PaymentDate,
+                };
+                _context.Add(newPayment);
+                await _context.SaveChangesAsync();
+
                 return RedirectToAction(nameof(Index));
 
             }
