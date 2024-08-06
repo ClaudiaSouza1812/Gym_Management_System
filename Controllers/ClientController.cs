@@ -9,16 +9,19 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.DAL;
 using P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models;
+using P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Interfaces.IServices;
 
 namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
 {
     public class ClientController : Controller
     {
         private readonly CA_RS11_P2_2_ClaudiaSouza_DBContext _context;
+        private readonly IClientService _clientService;
 
-        public ClientController(CA_RS11_P2_2_ClaudiaSouza_DBContext context)
+        public ClientController(CA_RS11_P2_2_ClaudiaSouza_DBContext context, IClientService clientService)
         {
             _context = context;
+            _clientService = clientService;
         }
 
         // GET: Client
@@ -92,8 +95,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
             {
                 try
                 {
-                    var existingClient = await _context.Client.FirstOrDefaultAsync(c => c.NIF == viewModel.Client.NIF);
-                    if (existingClient != null)
+                    if (await _clientService.CheckExistentNif(viewModel.Client.NIF))
                     {
                         ModelState.AddModelError("Client.NIF", "A client with this NIF already exists.");
                         return View(viewModel);

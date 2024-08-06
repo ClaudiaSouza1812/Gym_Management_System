@@ -49,7 +49,8 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
         // GET: Contract/Create
         public IActionResult Create()
         {
-            ViewData["ClientId"] = new SelectList(_context.Client, "Id", "Email");
+            ViewData["ClientId"] = new SelectList(_context.Client, "Id", "Id");
+            ViewData["FullName"] = new SelectList(_context.Client, "FullName", "FullName");
             ViewData["MembershipId"] = new SelectList(_context.Membership, "MembershipId", "MembershipId");
             return View();
         }

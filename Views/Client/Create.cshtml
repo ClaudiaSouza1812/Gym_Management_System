@@ -16,8 +16,6 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-            
-            <h4>Client</h4>
             <div class="form-group">
                 <label asp-for="Client.Status" class="control-label"></label>
                 <select asp-for="Client.Status" asp-items="Html.GetEnumSelectList<EnumClientStatus>()"></select>

@@ -1,5 +1,7 @@
 using P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.DAL;
+using P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Services;
 using Microsoft.EntityFrameworkCore;
+using P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Interfaces.IServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,12 +11,10 @@ var connectionString = builder.Configuration.GetConnectionString("CA_RS11_P2-2_C
 // Register the EF service;
 builder.Services.AddDbContext<CA_RS11_P2_2_ClaudiaSouza_DBContext>(options => options.UseSqlServer(connectionString));
 
+builder.Services.AddScoped<IClientService, ClientService>();
+
 // Add services to the container.
-builder.Services.AddControllersWithViews(options =>
-{
-    options.ModelBindingMessageProvider.SetValueMustNotBeNullAccessor(
-        _ => "The field is required.");
-});
+builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 

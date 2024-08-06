@@ -1,4 +1,5 @@
-﻿@model P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models.Client
+﻿@using P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Enums
+@model P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models.Client
 
 @{
     ViewData["Title"] = "Edit";
@@ -12,21 +13,7 @@
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Status" class="control-label"></label>
-                <select asp-for="Status" class="form-control"></select>
-                <span asp-validation-for="Status" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PaymentType" class="control-label"></label>
-                <select asp-for="PaymentType" class="form-control"></select>
-                <span asp-validation-for="PaymentType" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Loyal" /> @Html.DisplayNameFor(model => model.Loyal)
-                </label>
-            </div>
+
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
                 <label asp-for="FirstName" class="control-label"></label>
@@ -45,7 +32,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="BirthDate" class="control-label"></label>
-                <input asp-for="BirthDate" class="form-control" />
+                <input asp-for="BirthDate" class="form-control" type="date" />
                 <span asp-validation-for="BirthDate" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -79,14 +66,19 @@
                 <span asp-validation-for="Country" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CreatedAt" class="control-label"></label>
-                <input asp-for="CreatedAt" class="form-control" />
-                <span asp-validation-for="CreatedAt" class="text-danger"></span>
+                <label asp-for="Status" class="control-label"></label>
+                <select asp-for="Status" asp-items="Html.GetEnumSelectList<EnumClientStatus>()"></select>
+                <span asp-validation-for="Status" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="UpdatedAt" class="control-label"></label>
-                <input asp-for="UpdatedAt" class="form-control" />
-                <span asp-validation-for="UpdatedAt" class="text-danger"></span>
+                <label asp-for="PaymentType" class="control-label"></label>
+                <select asp-for="PaymentType" asp-items="Html.GetEnumSelectList<EnumPaymentType>()"></select>
+                <span asp-validation-for="PaymentType" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Loyal" /> @Html.DisplayNameFor(model => model.Loyal)
+                </label>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
