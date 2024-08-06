@@ -13,6 +13,12 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
         [DisplayName("Membership Id")]
         public int MembershipId { get; set; }
 
+        [Required(ErrorMessage = "Membership Name is required")]
+        [Column(TypeName = "int")]
+        [DisplayName("Membership Name")]
+        [EnumDataType(typeof(EnumMembershipName))]
+        public EnumMembershipName MembershipName { get; set; }
+
         [Required(ErrorMessage = "The field 'Discount' is mandatory.")]
         [Column(TypeName = "decimal(5,2)")]
         [Range(0,20, ErrorMessage = "Discount must be between 0 and 20.")]
@@ -36,13 +42,15 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
 
         public Membership()
         {
+            MembershipName = EnumMembershipName.Regular;
             Discount = 0;
             StartDate = DateTime.UtcNow;
             Contracts = new List<Contract>();
         }
 
-        public Membership(decimal discount, DateTime startDate)
+        public Membership(EnumMembershipName membershipName, decimal discount, DateTime startDate)
         {
+            MembershipName = membershipName;
             Discount = discount;
             StartDate = startDate;
             Contracts = new List<Contract>();

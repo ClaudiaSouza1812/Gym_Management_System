@@ -34,12 +34,12 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
 
         #region Navigation Properties
 
-        public virtual Client Client { get; set; }
+        public virtual Client? Client { get; set; }
 
-        public virtual Membership Membership { get; set; }
+        public virtual Membership? Membership { get; set; }
 
-        public virtual ICollection<Payment> Payments { get; set; }
-        public virtual ICollection<ContractModality> ContractModalities { get; set; }
+        public virtual ICollection<Payment>? Payments { get; set; }
+        public virtual ICollection<ContractModality>? ContractModalities { get; set; }
 
         #endregion
 

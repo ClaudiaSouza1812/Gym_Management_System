@@ -1,27 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.DAL;
 using P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models;
-using P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Interfaces.IServices;
 
 namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
 {
     public class ClientController : Controller
     {
         private readonly CA_RS11_P2_2_ClaudiaSouza_DBContext _context;
-        private readonly IClientService _clientService;
 
-        public ClientController(CA_RS11_P2_2_ClaudiaSouza_DBContext context, IClientService clientService)
+        public ClientController(CA_RS11_P2_2_ClaudiaSouza_DBContext context)
         {
             _context = context;
-            _clientService = clientService;
         }
 
         // GET: Client
@@ -53,18 +48,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
         // GET: Client/Create
         public IActionResult Create()
         {
-            var viewModel = new CreateClientViewModel
-            {
-                Client = new Client(),
-                Membership = new Membership(),
-                ContractDate = DateTime.Now,
-                PaymentDate = DateTime.Now,
-                PaymentBaseValue = 0,
-                PaymentBaseRate = 0,
-                Modality = new Modality()
-            };
-
-            return View(viewModel);
+            return View();
         }
 
         // POST: Client/Create
@@ -72,91 +56,15 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(CreateClientViewModel viewModel)
+        public async Task<IActionResult> Create([Bind("Status,PaymentType,Loyal,Id,FirstName,LastName,NIF,BirthDate,Email,PhoneNumber,Address,PostalCode,City,Country,CreatedAt,UpdatedAt")] Client client)
         {
-            Console.WriteLine("Received Data:");
-            Console.WriteLine(JsonSerializer.Serialize(viewModel, new JsonSerializerOptions { WriteIndented = true }));
-
-            // Log ModelState details
-            Console.WriteLine("ModelState Details:");
-            foreach (var key in ModelState.Keys)
-            {
-                var modelStateEntry = ModelState[key];
-                Console.WriteLine($"Key: {key}");
-                Console.WriteLine($"  Is Valid: {modelStateEntry.ValidationState == Microsoft.AspNetCore.Mvc.ModelBinding.ModelValidationState.Valid}");
-                Console.WriteLine($"  Raw Value: {modelStateEntry.RawValue}");
-                foreach (var error in modelStateEntry.Errors)
-                {
-                    Console.WriteLine($"  Error: {error.ErrorMessage}");
-                }
-            }
-
             if (ModelState.IsValid)
             {
-                try
-                {
-                    if (await _clientService.CheckExistentNif(viewModel.Client.NIF))
-                    {
-                        ModelState.AddModelError("Client.NIF", "A client with this NIF already exists.");
-                        return View(viewModel);
-                    }
-
-                    _context.Client.Add(viewModel.Client);
-                    await _context.SaveChangesAsync();
-
-                    _context.Membership.Add(viewModel.Membership);
-                    await _context.SaveChangesAsync();
-
-                    var newContract = new Contract
-                    {
-                        ClientId = viewModel.Client.Id,
-                        MembershipId = viewModel.Membership.MembershipId,
-                        ContractDate = viewModel.ContractDate
-                    };
-                    _context.Contract.Add(newContract);
-                    await _context.SaveChangesAsync();
-
-                    var newPayment = new Payment(
-                    
-                        viewModel.PaymentBaseValue,
-                        viewModel.PaymentBaseRate,
-                        viewModel.PaymentDate)
-                    {
-                        ContractId = newContract.ContractId
-                    };
-                    _context.Payment.Add(newPayment);
-                    await _context.SaveChangesAsync();
-
-                    var newModality = new Modality
-                    {
-                        ModalityName = viewModel.Modality.ModalityName,
-                        ModalityPackage = viewModel.Modality.ModalityPackage
-                    };
-                    _context.Modality.Add(newModality);
-                    await _context.SaveChangesAsync();
-
-                    return RedirectToAction(nameof(Index));
-                }
-                catch (Exception ex)
-                {
-                    // Log the exception
-                    Debug.WriteLine($"An error occurred: {ex.Message}");
-                    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
-                }
+                _context.Add(client);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
             }
-            else
-            {
-                Console.WriteLine("ModelState is invalid");
-                foreach (var modelState in ModelState.Values)
-                {
-                    foreach (var error in modelState.Errors)
-                    {
-                        Console.WriteLine(error.ErrorMessage);
-                    }
-                }
-            }
-
-            return View(viewModel);
+            return View(client);
         }
 
         // GET: Client/Edit/5

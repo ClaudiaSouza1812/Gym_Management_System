@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -62,13 +63,30 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ContractId,ClientId,MembershipId,ContractDate")] Contract contract)
         {
+            Console.WriteLine("Received Data:");
+            Console.WriteLine(JsonSerializer.Serialize(contract, new JsonSerializerOptions { WriteIndented = true }));
+
+            // Log ModelState details
+            Console.WriteLine("ModelState Details:");
+            foreach (var key in ModelState.Keys)
+            {
+                var modelStateEntry = ModelState[key];
+                Console.WriteLine($"Key: {key}");
+                Console.WriteLine($"  Is Valid: {modelStateEntry.ValidationState == Microsoft.AspNetCore.Mvc.ModelBinding.ModelValidationState.Valid}");
+                Console.WriteLine($"  Raw Value: {modelStateEntry.RawValue}");
+                foreach (var error in modelStateEntry.Errors)
+                {
+                    Console.WriteLine($"  Error: {error.ErrorMessage}");
+                }
+            }
+
             if (ModelState.IsValid)
             {
                 _context.Add(contract);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ClientId"] = new SelectList(_context.Client, "Id", "Email", contract.ClientId);
+            ViewData["ClientId"] = new SelectList(_context.Client, "Id", "Id", contract.ClientId);
             ViewData["MembershipId"] = new SelectList(_context.Membership, "MembershipId", "MembershipId", contract.MembershipId);
             return View(contract);
         }

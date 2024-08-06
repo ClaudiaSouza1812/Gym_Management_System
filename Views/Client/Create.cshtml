@@ -1,7 +1,5 @@
-﻿@using P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Enums
-
-@model P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models.CreateClientViewModel
-
+﻿﻿@using P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Enums
+@model P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models.Client
 
 @{
     ViewData["Title"] = "Create";
@@ -15,122 +13,72 @@
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
             <div class="form-group">
-                <label asp-for="Client.Status" class="control-label"></label>
-                <select asp-for="Client.Status" asp-items="Html.GetEnumSelectList<EnumClientStatus>()"></select>
-                <span asp-validation-for="Client.Status" class="text-danger"></span>
+                <label asp-for="Status" class="control-label"></label>
+                <select asp-for="Status" asp-items="Html.GetEnumSelectList<EnumClientStatus>()"></select>
+                <span asp-validation-for="Status" class="text-danger"></span>
             </div>
             
             <div class="form-group">
-                <label asp-for="Client.FirstName" class="control-label"></label>
-                <input asp-for="Client.FirstName" class="form-control" />
-                <span asp-validation-for="Client.FirstName" class="text-danger"></span>
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Client.LastName" class="control-label"></label>
-                <input asp-for="Client.LastName" class="form-control" />
-                <span asp-validation-for="Client.LastName" class="text-danger"></span>
+                <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Client.NIF" class="control-label"></label>
-                <input asp-for="Client.NIF" class="form-control" />
-                <span asp-validation-for="Client.NIF" class="text-danger"></span>
+                <label asp-for="NIF" class="control-label"></label>
+                <input asp-for="NIF" class="form-control" />
+                <span asp-validation-for="NIF" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Client.BirthDate" class="control-label"></label>
-                <input asp-for="Client.BirthDate" class="form-control" type="date" />
-                <span asp-validation-for="Client.BirthDate" class="text-danger"></span>
+                <label asp-for="BirthDate" class="control-label"></label>
+                <input asp-for="BirthDate" class="form-control" type="date"/>
+                <span asp-validation-for="BirthDate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Client.Email" class="control-label"></label>
-                <input asp-for="Client.Email" class="form-control" />
-                <span asp-validation-for="Client.Email" class="text-danger"></span>
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Client.PhoneNumber" class="control-label"></label>
-                <input asp-for="Client.PhoneNumber" class="form-control" />
-                <span asp-validation-for="Client.PhoneNumber" class="text-danger"></span>
+                <label asp-for="PhoneNumber" class="control-label"></label>
+                <input asp-for="PhoneNumber" class="form-control" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Client.Address" class="control-label"></label>
-                <input asp-for="Client.Address" class="form-control" />
-                <span asp-validation-for="Client.Address" class="text-danger"></span>
+                <label asp-for="Address" class="control-label"></label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Client.PostalCode" class="control-label"></label>
-                <input asp-for="Client.PostalCode" class="form-control" />
-                <span asp-validation-for="Client.PostalCode" class="text-danger"></span>
+                <label asp-for="PostalCode" class="control-label"></label>
+                <input asp-for="PostalCode" class="form-control" />
+                <span asp-validation-for="PostalCode" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Client.City" class="control-label"></label>
-                <input asp-for="Client.City" class="form-control" />
-                <span asp-validation-for="Client.City" class="text-danger"></span>
+                <label asp-for="City" class="control-label"></label>
+                <input asp-for="City" class="form-control" />
+                <span asp-validation-for="City" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Client.Country" class="control-label"></label>
-                <input asp-for="Client.Country" class="form-control" />
-                <span asp-validation-for="Client.Country" class="text-danger"></span>
+                <label asp-for="Country" class="control-label"></label>
+                <input asp-for="Country" class="form-control" />
+                <span asp-validation-for="Country" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Client.PaymentType" class="control-label"></label>
-                <select asp-for="Client.PaymentType" asp-items="Html.GetEnumSelectList<EnumPaymentType>()"></select>
-                <span asp-validation-for="Client.PaymentType" class="text-danger"></span>
+                <label asp-for="PaymentType" class="control-label"></label>
+                <select asp-for="PaymentType" asp-items="Html.GetEnumSelectList<EnumPaymentType>()"></select>
+                <span asp-validation-for="PaymentType" class="text-danger"></span>
             </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Client.Loyal" /> @Html.DisplayNameFor(model => model.Client.Loyal)
+                    <input class="form-check-input" asp-for="Loyal" /> @Html.DisplayNameFor(model => model.Loyal)
                 </label>
             </div>
-            
-            <h4>Membership</h4>
-            <div class="form-group">
-                <label asp-for="Membership.Discount" class="control-label"></label>
-                <input asp-for="Membership.Discount" class="form-control" />
-                <span asp-validation-for="Membership.Discount" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Membership.StartDate" class="control-label"></label>
-                <input asp-for="Membership.StartDate" class="form-control" type="date" />
-                <span asp-validation-for="Membership.StartDate" class="text-danger"></span>
-            </div>
-
-            <h4>Contract</h4>
-            <div class="form-group">
-                <label asp-for="ContractDate" class="control-label"></label>
-                <input asp-for="ContractDate" class="form-control" type="date" />
-                <span asp-validation-for="ContractDate" class="text-danger"></span>
-            </div>
-
-            <h4>Payment</h4>
-            <div class="form-group">
-                <label asp-for="PaymentDate" class="control-label"></label>
-                <input asp-for="PaymentDate" class="form-control" type="date" />
-                <span asp-validation-for="PaymentDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PaymentBaseValue" class="control-label"></label>
-                <input asp-for="PaymentBaseValue" class="form-control" />
-                <span asp-validation-for="PaymentBaseValue" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PaymentBaseRate" class="control-label"></label>
-                <input asp-for="PaymentBaseRate" class="form-control" />
-                <span asp-validation-for="PaymentBaseRate" class="text-danger"></span>
-            </div>
-
-            <h4>Modality</h4>
-            <div class="form-group">
-                <label asp-for="Modality.ModalityName" class="control-label"></label>
-                <select asp-for="Modality.ModalityName" asp-items="Html.GetEnumSelectList<EnumModalityName>()"></select>
-                <span asp-validation-for="Modality.ModalityName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Modality.ModalityPackage" class="control-label"></label>
-                <select asp-for="Modality.ModalityPackage" asp-items="Html.GetEnumSelectList<EnumModalityPackage>()"></select>
-                <span asp-validation-for="Modality.ModalityPackage" class="text-danger"></span>
-            </div>
-
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
