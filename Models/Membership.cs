@@ -16,23 +16,18 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
         [Required(ErrorMessage = "Membership Name is required")]
         [Column(TypeName = "int")]
         [DisplayName("Membership Name")]
-        [EnumDataType(typeof(EnumMembershipName))]
-        public EnumMembershipName MembershipName { get; set; }
+        [EnumDataType(typeof(EnumMembershipType))]
+        public EnumMembershipType MembershipType { get; set; }
 
         [Required(ErrorMessage = "The field 'Discount' is mandatory.")]
         [Column(TypeName = "decimal(5,2)")]
-        [Range(0,20, ErrorMessage = "Discount must be between 0 and 20.")]
+        [Range(0, 20, ErrorMessage = "Discount must be between 0 and 20.")]
         public decimal Discount { get; set; }
-
-        [Required(ErrorMessage = "The field 'Start Date' is mandatory.")]
-        [Column(TypeName = "date")]
-        [DisplayName("Start Date")]
-        public DateTime StartDate { get; set; }
 
         #endregion
 
         #region Navigation Properties
-        
+
 
         public virtual ICollection<Contract> Contracts { get; set; }
 
@@ -42,18 +37,14 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
 
         public Membership()
         {
-            MembershipName = EnumMembershipName.Regular;
-            Discount = 0;
-            StartDate = DateTime.UtcNow;
+            MembershipType = EnumMembershipType.Monthly;
             Contracts = new List<Contract>();
         }
 
-        public Membership(EnumMembershipName membershipName, decimal discount, DateTime startDate)
+        public Membership(EnumMembershipType membershipType, decimal discount) : this()
         {
-            MembershipName = membershipName;
+            MembershipType = membershipType;
             Discount = discount;
-            StartDate = startDate;
-            Contracts = new List<Contract>();
         }
 
         #endregion

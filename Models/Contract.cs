@@ -27,8 +27,14 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
         [Required(ErrorMessage = "The field 'Contract Date' is mandatory")]
         [Column(TypeName = "date")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
-        [DisplayName("Contract Date")]
-        public DateTime ContractDate { get; set; }
+        [DisplayName("Contract Start Date")]
+        public DateTime StartDate { get; set; }
+
+        [Required(ErrorMessage = "The field 'Contract Date' is mandatory")]
+        [Column(TypeName = "date")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        [DisplayName("Contract End Date")]
+        public DateTime EndDate { get; set; }
 
         #endregion
 
@@ -45,20 +51,22 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
 
         #region Constructors
 
-        // Constructor for new contracts
+        
         public Contract()
         {
-            ContractDate = DateTime.Now;
+            StartDate = DateTime.Now;
+            EndDate = StartDate.Date.AddYears(1);
             Payments = new List<Payment>();
             ContractModalities = new List<ContractModality>();
         }
 
-        // Constructor for existent contracts
-        public Contract(DateTime contractDate, int clienteId, int membershipId) : this()
+        
+        public Contract(DateTime startDate, DateTime endstartDate, int clienteId, int membershipId) : this()
         { 
             ClientId = clienteId;
             MembershipId = membershipId;
-            ContractDate = contractDate;
+            StartDate = startDate;
+            EndDate = endstartDate;
         }
 
         #endregion

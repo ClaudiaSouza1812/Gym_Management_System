@@ -2,8 +2,7 @@
 {
     public enum EnumPaymentType
     {
-        MonthlyLoyalty = 1,
-        Monthly = 2,
-        PerSession = 3
+        Monthly = 1,
+        PerSession = 2
     }
 }
