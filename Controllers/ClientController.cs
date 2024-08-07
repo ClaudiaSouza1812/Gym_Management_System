@@ -60,6 +60,10 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (client.PaymentType == Enums.EnumPaymentType.MonthlyLoyalty)
+                {
+                    client.Loyal = true;
+                }
                 _context.Add(client);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

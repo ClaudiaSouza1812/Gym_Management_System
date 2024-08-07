@@ -34,7 +34,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
         #endregion
 
         #region Computed Property
-
+        [DisplayName("Payment Value")]
         public decimal PaymentTotalValue => PaymentBaseValue * PaymentBaseRate;
 
         #endregion
