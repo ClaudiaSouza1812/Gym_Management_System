@@ -7,16 +7,19 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.DAL;
 using P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models;
+using P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Services;
 
 namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
 {
     public class ContractController : Controller
     {
         private readonly CA_RS11_P2_2_ClaudiaSouza_DBContext _context;
+        private readonly ContractService _contractService;
 
-        public ContractController(CA_RS11_P2_2_ClaudiaSouza_DBContext context)
+        public ContractController(CA_RS11_P2_2_ClaudiaSouza_DBContext context, ContractService contractService)
         {
             _context = context;
+            _contractService = contractService;
         }
 
         // GET: Contract
@@ -63,6 +66,16 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (await _contractService.CheckExistingContract(contract.ClientId))
+                {
+                    if (true)
+                    {
+                        
+                    }
+                    ModelState.AddModelError("Contract.ClientId", "There is a contract still in force with this customer ID");
+                    return View(contract);
+                }
+
                 _context.Add(contract);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

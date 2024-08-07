@@ -2,5 +2,6 @@
 {
     public interface IContractService
     {
+        Task<bool> CheckExistingContract(int clientId);
     }
 }
