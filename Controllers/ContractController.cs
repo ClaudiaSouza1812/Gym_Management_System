@@ -68,20 +68,19 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
             {
                 if (await _contractService.CheckExistingContract(contract.ClientId))
                 {
-                    if (true)
+                    if (await _contractService.CheckContractValidity(contract.ClientId, contract.StartDate))
                     {
-                        
+                        ModelState.AddModelError("ClientId", "There is a contract still in force with this customer ID");
+                        return View(contract);
                     }
-                    ModelState.AddModelError("Contract.ClientId", "There is a contract still in force with this customer ID");
-                    return View(contract);
                 }
 
-                _context.Add(contract);
-                await _context.SaveChangesAsync();
+                await _contractService.CreateContract(contract);
                 return RedirectToAction(nameof(Index));
             }
             ViewData["ClientId"] = new SelectList(_context.Client, "Id", "Email", contract.ClientId);
             ViewData["MembershipId"] = new SelectList(_context.Membership, "MembershipId", "MembershipId", contract.MembershipId);
+
             return View(contract);
         }
 
