@@ -60,7 +60,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (client.PaymentType == Enums.EnumPaymentType.MonthlyLoyalty)
+                if (client.PaymentType == Enums.EnumPaymentType.Monthly)
                 {
                     client.Loyal = true;
                 }

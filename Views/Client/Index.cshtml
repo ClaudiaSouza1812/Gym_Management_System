@@ -41,7 +41,7 @@
     <tbody>
         @foreach (var item in Model)
         {
-            @if (item.PaymentType.Equals(EnumPaymentType.Monthly) || item.PaymentType.Equals(EnumPaymentType.MonthlyLoyalty))
+            @if (item.PaymentType.Equals(EnumPaymentType.Monthly))
             {
                 
                 <tr>

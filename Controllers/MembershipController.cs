@@ -56,7 +56,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MembershipId,MembershipName,Discount,StartDate")] Membership membership)
+        public async Task<IActionResult> Create([Bind("MembershipId,MembershipType,Discount")] Membership membership)
         {
             if (ModelState.IsValid)
             {
@@ -88,7 +88,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("MembershipId,MembershipName,Discount,StartDate")] Membership membership)
+        public async Task<IActionResult> Edit(int id, [Bind("MembershipId,MembershipType,Discount")] Membership membership)
         {
             if (id != membership.MembershipId)
             {
