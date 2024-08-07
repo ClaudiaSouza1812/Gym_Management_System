@@ -16,7 +16,7 @@
                 @Html.DisplayNameFor(model => model.MembershipType)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Discount)
+                @Html.DisplayNameFor(model => model.DiscountPercentage)
             </th>
             <th></th>
         </tr>
@@ -28,7 +28,7 @@
                 @Html.DisplayFor(modelItem => item.MembershipType)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Discount)
+                @Html.DisplayFor(modelItem => item.DiscountPercentage)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.MembershipId">Edit</a> |
