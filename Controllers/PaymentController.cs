@@ -6,6 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.DAL;
+using P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Enums;
+using P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Interfaces.IEntities;
+using P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Interfaces.IServices;
 using P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models;
 
 namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
@@ -13,10 +16,12 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
     public class PaymentController : Controller
     {
         private readonly CA_RS11_P2_2_ClaudiaSouza_DBContext _context;
+        private readonly IPaymentService _paymentService;
 
-        public PaymentController(CA_RS11_P2_2_ClaudiaSouza_DBContext context)
+        public PaymentController(CA_RS11_P2_2_ClaudiaSouza_DBContext context, IPaymentService paymentService)
         {
             _context = context;
+            _paymentService = paymentService;
         }
 
         // GET: Payment
@@ -48,8 +53,10 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
         // GET: Payment/Create
         public IActionResult Create()
         {
+            var contracts = _context.Contract.Include(c => c.Client).ToList();
 
-            ViewData["ContractId"] = new SelectList(_context.Contract, "ContractId", "ContractId");
+            ViewData["ContractId"] = new SelectList(contracts, "ContractId", "ContractId");
+            ViewData["ContractId"] = new SelectList(contracts, "Client.PaymentType", "Client.PaymentType");
 
             return View();
         }

@@ -16,6 +16,8 @@ builder.Services.AddScoped<IClientService, ClientService>();
 
 builder.Services.AddScoped<IContractService, ContractService>();
 
+builder.Services.AddScoped<IPaymentService, PaymentService>();
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 

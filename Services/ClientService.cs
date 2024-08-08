@@ -1,5 +1,4 @@
 ﻿using P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models;
-using P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Interfaces.IMethods;
 using P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Interfaces.IServices;
 using P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.DAL;
 using Microsoft.EntityFrameworkCore;
