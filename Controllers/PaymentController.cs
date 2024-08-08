@@ -48,7 +48,9 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
         // GET: Payment/Create
         public IActionResult Create()
         {
+
             ViewData["ContractId"] = new SelectList(_context.Contract, "ContractId", "ContractId");
+
             return View();
         }
 
@@ -66,6 +68,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["ContractId"] = new SelectList(_context.Contract, "ContractId", "ContractId", payment.ContractId);
+
             return View(payment);
         }
 

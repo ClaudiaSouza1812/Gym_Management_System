@@ -7,16 +7,16 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.DAL;
 using P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models;
-using P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Services;
+using P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Interfaces.IServices;
 
 namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
 {
     public class ContractController : Controller
     {
         private readonly CA_RS11_P2_2_ClaudiaSouza_DBContext _context;
-        private readonly ContractService _contractService;
+        private readonly IContractService _contractService;
 
-        public ContractController(CA_RS11_P2_2_ClaudiaSouza_DBContext context, ContractService contractService)
+        public ContractController(CA_RS11_P2_2_ClaudiaSouza_DBContext context, IContractService contractService)
         {
             _context = context;
             _contractService = contractService;
@@ -71,6 +71,9 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
                     if (await _contractService.CheckContractValidity(contract.ClientId, contract.StartDate))
                     {
                         ModelState.AddModelError("ClientId", "There is a contract still in force with this customer ID");
+
+                        ViewData["ClientId"] = new SelectList(_context.Client, "Id", "FullName", contract.ClientId);
+                        ViewData["MembershipId"] = new SelectList(_context.Membership, "MembershipId", "MembershipType", contract.MembershipId);
                         return View(contract);
                     }
                 }
@@ -78,8 +81,8 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
                 await _contractService.CreateContract(contract);
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ClientId"] = new SelectList(_context.Client, "Id", "Email", contract.ClientId);
-            ViewData["MembershipId"] = new SelectList(_context.Membership, "MembershipId", "MembershipId", contract.MembershipId);
+            ViewData["ClientId"] = new SelectList(_context.Client, "Id", "FullName", contract.ClientId);
+            ViewData["MembershipId"] = new SelectList(_context.Membership, "MembershipId", "MembershipType", contract.MembershipId);
 
             return View(contract);
         }

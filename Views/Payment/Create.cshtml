@@ -17,20 +17,16 @@
                 <select asp-for="ContractId" class ="form-control" asp-items="ViewBag.ContractId"></select>
             </div>
             <div class="form-group">
-                <label asp-for="PaymentBaseValue" class="control-label"></label>
-                <input asp-for="PaymentBaseValue" class="form-control" />
-                <span asp-validation-for="PaymentBaseValue" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PaymentBaseRate" class="control-label"></label>
-                <input asp-for="PaymentBaseRate" class="form-control" />
-                <span asp-validation-for="PaymentBaseRate" class="text-danger"></span>
+                <label asp-for="PaymentTotalValue" class="control-label"></label>
+                <input asp-for="PaymentTotalValue" class="form-control" readonly />
+                <span asp-validation-for="PaymentTotalValue" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="PaymentDate" class="control-label"></label>
-                <input asp-for="PaymentDate" class="form-control" />
+                <input asp-for="PaymentDate" class="form-control" type="date" />
                 <span asp-validation-for="PaymentDate" class="text-danger"></span>
             </div>
+            
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>

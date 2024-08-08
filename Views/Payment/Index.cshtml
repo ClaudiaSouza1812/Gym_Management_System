@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Payments</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -13,17 +13,21 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.PaymentBaseValue)
+                @Html.DisplayNameFor(model => model.Contract.ContractId)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PaymentBaseRate)
+                @Html.DisplayNameFor(model => model.Contract.Client.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Contract.Client.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaymentTotalValue)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.PaymentDate)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Contract)
-            </th>
+            
             <th></th>
         </tr>
     </thead>
@@ -31,16 +35,19 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.PaymentBaseValue)
+                @Html.DisplayFor(modelItem => item.Contract.ContractId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PaymentBaseRate)
+                @Html.DisplayFor(modelItem => item.Contract.Client.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Contract.Client.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaymentTotalValue)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.PaymentDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Contract.ContractId)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.PaymentId">Edit</a> |
