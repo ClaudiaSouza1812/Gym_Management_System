@@ -1,4 +1,5 @@
-﻿@model P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models.Modality
+﻿﻿@using P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Enums
+@model P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models.Modality
 
 @{
     ViewData["Title"] = "Create";
@@ -14,12 +15,12 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="ModalityName" class="control-label"></label>
-                <select asp-for="ModalityName" class="form-control"></select>
+                <select asp-for="ModalityName" asp-items="Html.GetEnumSelectList<EnumModalityName>()"><option value="">-- Select a Modality Name --</option></select>
                 <span asp-validation-for="ModalityName" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ModalityPackage" class="control-label"></label>
-                <select asp-for="ModalityPackage" class="form-control"></select>
+                <select asp-for="ModalityPackage" asp-items="Html.GetEnumSelectList<EnumModalityPackage>()"><option value="">-- Select a Modality Package --</option></select>
                 <span asp-validation-for="ModalityPackage" class="text-danger"></span>
             </div>
             <div class="form-group">

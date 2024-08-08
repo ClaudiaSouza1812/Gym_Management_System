@@ -18,10 +18,21 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.DAL
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<ContractModality>().HasKey(cm => new { cm.ContractId, cm.ModalityId });
+            modelBuilder.Entity<ContractModality>()
+                .HasKey(cm => new { cm.ContractId, cm.ModalityId });
 
-            modelBuilder.Entity<Client>().HasData(
-                new Client
+            modelBuilder.Entity<ContractModality>()
+                .HasOne(cm => cm.Contract)
+                .WithMany(c => c.ContractModalities)
+                .HasForeignKey(cm => cm.ContractId);
+
+            modelBuilder.Entity<ContractModality>()
+                .HasOne(cm => cm.Modality)
+                .WithMany(m => m.ContractModalities)
+                .HasForeignKey(cm => cm.ModalityId);
+
+            modelBuilder.Entity<Client>()
+                .HasData(new Client 
                 {
                     Id = 1,
                     FirstName = "Claudia",
