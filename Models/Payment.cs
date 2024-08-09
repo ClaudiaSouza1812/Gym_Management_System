@@ -20,23 +20,20 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
 
         [Column(TypeName = "decimal(6,2)")]
         [DisplayName("Payment Base Value")]
-        public decimal PaymentBaseValue { get; set; }
+        public decimal PaymentBaseValue { get; set; } = 4;
 
         [Column(TypeName = "decimal(6,2)")]
         [DisplayName("Payment Rate")]
-        public decimal PaymentBaseRate { get; set; }
+        public decimal PaymentBaseRate { get; set; } = 10;
 
         [Column(TypeName = "date")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         [DisplayName("Payment Date")]
         public DateTime PaymentDate { get; set; }
 
-        #endregion
-
-        #region Computed Property
         [Column(TypeName = "decimal(6,2)")]
         [DisplayName("Payment Value")]
-        public decimal PaymentTotalValue { get; set; }
+        public decimal PaymentTotalValue { get; set; } = 4;
 
         #endregion
 
@@ -49,18 +46,20 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
 
         #region Constructors
 
-        public Payment(){}
+        public Payment()
+        {
+            PaymentTotalValue = 4;
+        }
 
-        public Payment(decimal paymentBaseValue,  decimal paymentBaseRate, DateTime paymentDate)
+        public Payment(decimal paymentBaseValue,  decimal paymentBaseRate, decimal paymentTotalValue, DateTime paymentDate)
         {
             PaymentBaseValue = paymentBaseValue;
             PaymentBaseRate = paymentBaseRate;
             PaymentDate = paymentDate;
+            PaymentTotalValue = paymentTotalValue;
         }
 
         #endregion
-
-        
 
     }
 }

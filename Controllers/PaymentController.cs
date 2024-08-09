@@ -52,16 +52,25 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
         // GET: Payment/Create
         public IActionResult Create()
         {
+            var payment = new Payment
+            {
+                PaymentTotalValue = 4
+            };
+
             var contracts = _context.Contract.Include(c => c.Client).ToList();
 
             ViewData["ContractId"] = new SelectList(_context.Contract, "ContractId", "ContractId");
 
-            return View();
+            return View(payment);
         }
 
         [HttpPost]
         public async Task<IActionResult> CalculateValue([Bind("ContractId,PaymentDate")] Payment payment)
         {
+            ModelState.Remove("PaymentTotalValue");
+
+            payment.PaymentTotalValue = 4;
+
             if (ModelState.IsValid)
             {
                 var client = await _context.Contract.Where(co => co.ContractId == payment.ContractId).Select(co => co.Client).FirstOrDefaultAsync();
@@ -72,12 +81,14 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
                 }
                 else
                 {
-                    payment.PaymentTotalValue = 0;
+                    payment.PaymentTotalValue = 4;
                 }
 
-                ModelState.Remove("PaymentTotalValue");
             }
-            
+            else
+            {
+                payment.PaymentTotalValue = 4;
+            }
 
             ViewData["ContractId"] = new SelectList(_context.Contract, "ContractId", "ContractId", payment.ContractId);
 
