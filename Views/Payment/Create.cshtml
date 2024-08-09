@@ -32,7 +32,8 @@
 
             <div class="form-group">
                 <label asp-for="PaymentTotalValue" class="control-label"></label>
-                <input asp-for="PaymentTotalValue" class="form-control" type="number" readonly />
+                <input type="text" value="€@(Model.PaymentTotalValue.ToString("F2").Replace(".", ","))" class="form-control" readonly />
+                <input asp-for="PaymentTotalValue" type="hidden" />
                 <span asp-validation-for="PaymentTotalValue" class="text-danger"></span>
             </div>
             <div class="form-group">

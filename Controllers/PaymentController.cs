@@ -27,7 +27,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
         // GET: Payment
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Payment.Include(p => p.Contract).ToListAsync());
+            return View(await _context.Payment.Include(p => p.Contract).ThenInclude(co => co.Client).ToListAsync());
         }
 
         // GET: Payment/Details/5
@@ -75,14 +75,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
             {
                 var client = await _context.Contract.Where(co => co.ContractId == payment.ContractId).Select(co => co.Client).FirstOrDefaultAsync();
 
-                if (client != null && client.PaymentType == EnumPaymentType.Monthly)
-                {
-                    payment.PaymentTotalValue = _paymentService.CalculateMonthlyPayment(payment);
-                }
-                else
-                {
-                    payment.PaymentTotalValue = 4;
-                }
+                payment.PaymentTotalValue = _paymentService.ComputePayment(payment, client);
 
             }
             else
