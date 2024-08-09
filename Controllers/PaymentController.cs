@@ -27,8 +27,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
         // GET: Payment
         public async Task<IActionResult> Index()
         {
-            var cA_RS11_P2_2_ClaudiaSouza_DBContext = _context.Payment.Include(p => p.Contract);
-            return View(await cA_RS11_P2_2_ClaudiaSouza_DBContext.ToListAsync());
+            return View(await _context.Payment.Include(p => p.Contract).ToListAsync());
         }
 
         // GET: Payment/Details/5
@@ -55,10 +54,34 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
         {
             var contracts = _context.Contract.Include(c => c.Client).ToList();
 
-            ViewData["ContractId"] = new SelectList(contracts, "ContractId", "ContractId");
-            ViewData["ContractId"] = new SelectList(contracts, "Client.PaymentType", "Client.PaymentType");
+            ViewData["ContractId"] = new SelectList(_context.Contract, "ContractId", "ContractId");
 
             return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CalculateValue([Bind("ContractId,PaymentDate")] Payment payment)
+        {
+            if (ModelState.IsValid)
+            {
+                var client = await _context.Contract.Where(co => co.ContractId == payment.ContractId).Select(co => co.Client).FirstOrDefaultAsync();
+
+                if (client != null && client.PaymentType == EnumPaymentType.Monthly)
+                {
+                    payment.PaymentTotalValue = _paymentService.CalculateMonthlyPayment(payment);
+                }
+                else
+                {
+                    payment.PaymentTotalValue = 0;
+                }
+
+                ModelState.Remove("PaymentTotalValue");
+            }
+            
+
+            ViewData["ContractId"] = new SelectList(_context.Contract, "ContractId", "ContractId", payment.ContractId);
+
+            return View("Create", payment);
         }
 
         // POST: Payment/Create
@@ -66,7 +89,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PaymentId,ContractId,PaymentBaseValue,PaymentBaseRate,PaymentDate")] Payment payment)
+        public async Task<IActionResult> Create([Bind("ContractId,PaymentDate,PaymentTotalValue")] Payment payment)
         {
             if (ModelState.IsValid)
             {

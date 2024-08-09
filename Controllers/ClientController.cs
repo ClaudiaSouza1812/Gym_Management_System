@@ -26,7 +26,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
         public async Task<IActionResult> Index()
         {
               return _context.Client != null ? 
-                          View(await _context.Client.ToListAsync()) :
+                          View(await _context.Client.Include(c => c.Contracts).ToListAsync()) :
                           Problem("Entity set 'CA_RS11_P2_2_ClaudiaSouza_DBContext.Client'  is null.");
         }
 

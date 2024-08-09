@@ -41,22 +41,9 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Services
             return totalValue - totalDiscount;
         }
 
-        public decimal CalculatePerSessionPayment(IPayment payment, IModality modality)
+        public decimal CalculatePerSessionPayment(IPayment payment)
         {
-            switch (modality.ModalityName)
-            {
-                case EnumModalityName.Swimming:
-                case EnumModalityName.Yoga:
-                case EnumModalityName.Pilates:
-                case EnumModalityName.Crossfit:
-                    return payment.PaymentBaseRate * 3;
-                case EnumModalityName.Zumba:
-                case EnumModalityName.MartialArts:
-                case EnumModalityName.Dance:
-                    return payment.PaymentBaseRate * 2;
-                default:
-                    return payment.PaymentBaseValue;
-            }
+            return payment.PaymentBaseValue * 3;
         }
 
         #endregion

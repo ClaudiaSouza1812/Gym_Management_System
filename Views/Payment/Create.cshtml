@@ -12,30 +12,33 @@
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
             <div class="form-group">
-                <label asp-for="ContractId" class="control-label"></label>
-                <select asp-for="ContractId" class ="form-control" asp-items="ViewBag.ContractId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="ContractId" class="control-label">Payment Type</label>
+                <label asp-for="ContractId" class="control-label">Contract Id</label>
                 <select asp-for="ContractId" class="form-control" asp-items="ViewBag.ContractId">
-                    <option value="">-- Select a Payment Type --</option>
+                    <option value="">-- Select a Contract Id --</option>
                 </select>
                 <span asp-validation-for="ContractId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PaymentTotalValue" class="control-label"></label>
-                <input asp-for="PaymentTotalValue" class="form-control" readonly />
-                <span asp-validation-for="PaymentTotalValue" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="PaymentDate" class="control-label"></label>
                 <input asp-for="PaymentDate" class="form-control" type="date" />
                 <span asp-validation-for="PaymentDate" class="text-danger"></span>
             </div>
+
+            <div class="form-group">
+                <input type="submit" value="Calculate Value" class="btn btn-primary" />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="PaymentTotalValue" class="control-label"></label>
+                <input asp-for="PaymentTotalValue" class="form-control" readonly />
+                <span asp-validation-for="PaymentTotalValue" class="text-danger"></span>
+            </div>
+            
             
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Create" class="btn btn-primary" formaction="Create" />
             </div>
         </form>
     </div>

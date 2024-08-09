@@ -17,6 +17,9 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.Contracts.FirstOrDefault().ContractId)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Status)
             </th>
             <th>
@@ -45,7 +48,9 @@
             {
                 
                 <tr>
-                    
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Contracts.FirstOrDefault().ContractId)
+                    </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Status)
                     </td>

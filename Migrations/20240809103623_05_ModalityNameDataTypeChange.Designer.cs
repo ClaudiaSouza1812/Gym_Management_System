@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.DAL;
 
@@ -11,9 +12,10 @@ using P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.DAL;
 namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Migrations
 {
     [DbContext(typeof(CA_RS11_P2_2_ClaudiaSouza_DBContext))]
-    partial class CA_RS11_P2_2_ClaudiaSouza_DBContextModelSnapshot : ModelSnapshot
+    [Migration("20240809103623_05_ModalityNameDataTypeChange")]
+    partial class _05_ModalityNameDataTypeChange
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -258,9 +260,6 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Migrations
 
                     b.Property<DateTime>("PaymentDate")
                         .HasColumnType("date");
-
-                    b.Property<decimal>("PaymentTotalValue")
-                        .HasColumnType("decimal(6,2)");
 
                     b.HasKey("PaymentId");
 

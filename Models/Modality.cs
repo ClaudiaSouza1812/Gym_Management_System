@@ -14,14 +14,14 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
         public int ModalityId { get; set; }
 
         [Required(ErrorMessage = "Modality Name is required")]
-        [Column(TypeName = "int")]
+        [Column(TypeName = "nvarchar")]
+        [StringLength(30, ErrorMessage = "Limit of 40 characters")]
         [DisplayName("Modality Name")]
-        [EnumDataType(typeof(EnumModalityName))]
-        public EnumModalityName ModalityName { get; set; }
+        public string ModalityName { get; set; }
 
-        [Required(ErrorMessage = "Modality Type is required")]
+        [Required(ErrorMessage = "Modality Package is required")]
         [Column(TypeName = "int")]
-        [DisplayName("Modality Type")]
+        [DisplayName("Modality Package")]
         [EnumDataType(typeof(EnumModalityPackage))]
         public EnumModalityPackage ModalityPackage { get; set; }
 
@@ -40,7 +40,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
             ContractModalities = new List<ContractModality>();
         }
 
-        public Modality(EnumModalityName modalityName, EnumModalityPackage modalityPackage) : this() 
+        public Modality(string modalityName, EnumModalityPackage modalityPackage) : this() 
         {
             ModalityName = modalityName;
             ModalityPackage = modalityPackage;

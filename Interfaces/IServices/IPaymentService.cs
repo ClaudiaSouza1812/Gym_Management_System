@@ -7,6 +7,6 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Interfaces.IServices
     {
         decimal CalculateMonthlyPayment(IPayment payment);
         decimal CalculateMonthlyLoyalPayment(IPayment payment, IMembership membership);
-        decimal CalculatePerSessionPayment(IPayment payment, IModality modality);
+        decimal CalculatePerSessionPayment(IPayment payment);
     }
 }

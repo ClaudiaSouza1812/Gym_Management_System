@@ -13,15 +13,16 @@
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="ModalityName" class="control-label"></label>
-                <select asp-for="ModalityName" asp-items="Html.GetEnumSelectList<EnumModalityName>()"><option value="">-- Select a Modality Name --</option></select>
-                <span asp-validation-for="ModalityName" class="text-danger"></span>
-            </div>
+
             <div class="form-group">
                 <label asp-for="ModalityPackage" class="control-label"></label>
                 <select asp-for="ModalityPackage" asp-items="Html.GetEnumSelectList<EnumModalityPackage>()"><option value="">-- Select a Modality Package --</option></select>
                 <span asp-validation-for="ModalityPackage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ModalityName" class="control-label"></label>
+                <input asp-for="ModalityName" class="form-control" />
+                <span asp-validation-for="ModalityName" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
