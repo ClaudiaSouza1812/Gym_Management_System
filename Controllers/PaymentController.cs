@@ -54,7 +54,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
         {
             var payment = new Payment
             {
-                PaymentTotalValue = 4
+                PaymentTotalValue = 12
             };
 
             var contracts = _context.Contract.Include(c => c.Client).ToList();
@@ -69,7 +69,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
         {
             ModelState.Remove("PaymentTotalValue");
 
-            payment.PaymentTotalValue = 4;
+            payment.PaymentTotalValue = 12;
 
             if (ModelState.IsValid)
             {

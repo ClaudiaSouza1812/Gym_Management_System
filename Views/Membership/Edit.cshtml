@@ -1,4 +1,5 @@
-﻿@model P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models.Membership
+﻿﻿@using P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Enums
+@model P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models.Membership
 
 @{
     ViewData["Title"] = "Edit";
@@ -10,12 +11,11 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit">
+        <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="MembershipId" />
             <div class="form-group">
                 <label asp-for="MembershipType" class="control-label"></label>
-                <select asp-for="MembershipType" class="form-control"></select>
+                <select asp-for="MembershipType" asp-items="Html.GetEnumSelectList<EnumPaymentType>()"></select>
                 <span asp-validation-for="MembershipType" class="text-danger"></span>
             </div>
             <div class="form-group">
