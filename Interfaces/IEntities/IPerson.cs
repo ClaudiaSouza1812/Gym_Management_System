@@ -10,7 +10,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Interfaces.IEntities
         string FirstName { get; }
         string LastName { get; }
         string NIF { get; }
-        DateTime BirthDate { get; }
+        DateTime? BirthDate { get; }
         string Email { get; }
         string PhoneNumber { get; }
         string Address { get; }

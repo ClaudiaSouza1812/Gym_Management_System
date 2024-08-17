@@ -11,7 +11,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
         #region Scalar Properties
 
         [Key]
-        [DisplayName("Person Id")]
+        [DisplayName("Id")]
         public int Id { get; set; }
 
         [Required(ErrorMessage = "The field 'Name' is mandatory.")]
@@ -33,9 +33,8 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
         public string NIF { get; set; }
 
         [Required(ErrorMessage = "The field 'Birth Date' is mandatory.")]
-        [Column(TypeName = "date")]
         [DisplayName("Birth Date")]
-        public DateTime BirthDate { get; set; }
+        public DateTime? BirthDate { get; set; }
 
         [EmailAddress]
         [Required(ErrorMessage = "The field 'Email' is mandatory.")]
@@ -47,7 +46,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
         [Phone]
         [Column(TypeName = "nvarchar")]
         [StringLength(9, ErrorMessage = "Limit of 9 characters.")]
-        [DisplayName("Phone Number")]
+        [DisplayName("Phone")]
         public string PhoneNumber { get; set; }
 
         [Column(TypeName = "nvarchar")]

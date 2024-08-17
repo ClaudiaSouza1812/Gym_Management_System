@@ -3,6 +3,8 @@ using P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Services;
 using Microsoft.EntityFrameworkCore;
 using P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Interfaces.IServices;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Localization;
+using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +23,12 @@ builder.Services.AddScoped<IPaymentService, PaymentService>();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+var cultureInfo = new CultureInfo("en-GB");
+cultureInfo.DateTimeFormat.ShortDatePattern = "dd/MM/yyyy";
+
+CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -29,6 +37,8 @@ if (!app.Environment.IsDevelopment())
     app.UseExceptionHandler("/Home/Error");
 }
 app.UseStaticFiles();
+
+app.UseRequestLocalization();
 
 app.UseRouting();
 

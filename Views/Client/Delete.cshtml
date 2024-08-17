@@ -50,8 +50,8 @@
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.BirthDate)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.BirthDate)
+        <dd class="col-sm-10">
+            @string.Format("{0:dd/MM/yyyy}", Model.BirthDate)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Email)

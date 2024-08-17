@@ -15,7 +15,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
 
         [Required(ErrorMessage = "The field 'Status' is mandatory.")]
         [Column(TypeName = "int")]
-        [DisplayName("Client Status")]
+        [DisplayName("Status")]
         [EnumDataType(typeof(EnumClientStatus))]
         public EnumClientStatus Status { get; set; }
 

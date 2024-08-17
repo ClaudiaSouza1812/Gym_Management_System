@@ -23,12 +23,14 @@
             </div>
             <div class="form-group">
                 <label asp-for="StartDate" class="control-label"></label>
-                <input asp-for="StartDate" class="form-control" type="date" pattern="\d{2}/\d{2}/\d{4}" placeholder="dd/mm/yyyy" />
+                <input asp-for="StartDate" class="form-control" type="text"
+                       value="@(Model?.StartDate != null ? Model.StartDate.ToString() : DateTime.Now.ToString("dd/MM/yyyy"))" />
                 <span asp-validation-for="StartDate" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="EndDate" class="control-label"></label>
-                <input asp-for="EndDate" class="form-control" type="date" pattern="\d{2}/\d{2}/\d{4}" placeholder="dd/mm/yyyy" />
+                <input asp-for="EndDate" class="form-control" type="text"
+                       value="@(Model?.EndDate != null ? Model.EndDate.ToString() : DateTime.Now.ToString("dd/MM/yyyy"))" />
                 <span asp-validation-for="EndDate" class="text-danger"></span>
             </div>
             <div class="form-group">

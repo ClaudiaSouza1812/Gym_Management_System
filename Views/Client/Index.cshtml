@@ -32,6 +32,9 @@
                 @Html.DisplayNameFor(model => model.FullName)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Email)
             </th>
             <th>
@@ -62,6 +65,9 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.FullName)
                     </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
 
                     <td>
                         @Html.DisplayFor(modelItem => item.Email)
@@ -85,6 +91,9 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.Contracts.FirstOrDefault().ContractId)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Status)
             </th>
             <th>
@@ -95,6 +104,9 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Email)
@@ -113,7 +125,9 @@
             {
 
                 <tr>
-
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Contracts.FirstOrDefault().ContractId)
+                    </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Status)
                     </td>
@@ -126,7 +140,9 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.FullName)
                     </td>
-
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Email)
                     </td>
