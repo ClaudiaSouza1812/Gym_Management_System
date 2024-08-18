@@ -7,5 +7,6 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Interfaces.IServices
         Task<bool> CheckExistingContract(int clientId);
         Task<bool> CheckContractValidity(int clientId, DateTime startDate);
         Task<Contract> CreateContract(Contract contract);
+        Task CreateContractWithModalityPackage(Contract contract);
     }
 }

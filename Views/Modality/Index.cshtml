@@ -1,4 +1,6 @@
 ﻿@model IEnumerable<P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models.Modality>
+@using P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Enums
+
 
 @{
     ViewData["Title"] = "Index";
@@ -13,23 +15,45 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ModalityName)
+                @Html.DisplayNameFor(model => model.ModalityId)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ModalityPackage)
             </th>
-            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.ModalityName)
+            </th>
+            
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.ModalityName)
+                @Html.DisplayFor(modelItem => item.ModalityId)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ModalityPackage)
             </td>
+            <td>
+                @{
+                    switch (item.ModalityPackage)
+                    {
+                        case EnumModalityPackage.OneModality:
+                        case EnumModalityPackage.AllInclusive:
+                            @item.ModalityName
+                            break;
+                        case EnumModalityPackage.TwoModalities:
+                            var modalities = item.ModalityName.Split(',');
+                            @modalities[0]
+                            <br />
+                            @(modalities.Length > 1 ? modalities[1] : "")
+                            break;
+                    }
+                }
+            </td>
+            
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ModalityId">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.ModalityId">Details</a> |

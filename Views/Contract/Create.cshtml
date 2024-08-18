@@ -1,5 +1,6 @@
 ﻿@model P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models.Contract
 @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+@using P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Enums
 
 @{
     ViewData["Title"] = "Create";
@@ -20,6 +21,13 @@
             <div class="form-group">
                 <label asp-for="Membership.MembershipType" class="control-label"></label>
                 <select asp-for="MembershipId" class ="form-control" asp-items="ViewBag.MembershipId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="SelectedModalityPackage" class="control-label"></label>
+                <select asp-for="SelectedModalityPackage" asp-items="Html.GetEnumSelectList<EnumModalityPackage>()" class="form-control">
+                    <option value="">-- Select Modality Package --</option>
+                </select>
+                <span asp-validation-for="SelectedModalityPackage" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="StartDate" class="control-label"></label>

@@ -31,5 +31,30 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Services
             await _context.SaveChangesAsync();
             return contract;
         }
+
+        public async Task CreateContractWithModalityPackage(Contract contract)
+        {
+            // Create the contract
+            _context.Contract.Add(contract);
+            await _context.SaveChangesAsync(); // Save the contract first to get the ContractId
+
+            // Fetch all modalities that match the selected package
+            var modalities = await _context.Modality
+                .Where(m => m.ModalityPackage == contract.SelectedModalityPackage)
+                .ToListAsync();
+
+            // Associate each modality with the contract
+            foreach (var modality in modalities)
+            {
+                var contractModality = new ContractModality
+                {
+                    ContractId = contract.ContractId,
+                    ModalityId = modality.ModalityId
+                };
+                _context.ContractModality.Add(contractModality);
+            }
+
+            await _context.SaveChangesAsync(); // Save the changes for ContractModalities
+        }
     }
 }

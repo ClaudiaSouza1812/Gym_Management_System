@@ -1,4 +1,5 @@
-﻿using P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Interfaces.IEntities;
+﻿using P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Enums;
+using P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Interfaces.IEntities;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -35,6 +36,10 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         [DisplayName("Contract End Date")]
         public DateTime EndDate { get; set; }
+
+        [NotMapped]
+        [DisplayName("Modality Package")]
+        public EnumModalityPackage? SelectedModalityPackage { get; set; }
 
         #endregion
 

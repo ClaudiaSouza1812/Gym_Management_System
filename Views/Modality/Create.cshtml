@@ -5,31 +5,67 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
 
-<h4>Modality</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<h2>Create Modality</h2>
 
-            <div class="form-group">
-                <label asp-for="ModalityPackage" class="control-label"></label>
-                <select asp-for="ModalityPackage" asp-items="Html.GetEnumSelectList<EnumModalityPackage>()"><option value="">-- Select a Modality Package --</option></select>
-                <span asp-validation-for="ModalityPackage" class="text-danger"></span>
-            </div>
+<form asp-action="SelectPackage" method="post">
+    <div class="form-group">
+        <label asp-for="ModalityPackage" class="control-label"></label>
+        <select asp-for="ModalityPackage" asp-items="Html.GetEnumSelectList<EnumModalityPackage>()" onchange="this.form.submit();">
+            <option value="">-- Select a Modality Package --</option>
+        </select>
+    </div>
+</form>
+
+@if (Model.ModalityPackage != 0) // Assuming 0 is the default value for the enum
+{
+    <form asp-action="Create">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="ModalityPackage" />
+
+        @if (Model.ModalityPackage == EnumModalityPackage.AllInclusive || Model.ModalityPackage == EnumModalityPackage.OneModality)
+        {
             <div class="form-group">
                 <label asp-for="ModalityName" class="control-label"></label>
-                <input asp-for="ModalityName" class="form-control" />
+                <select asp-for="ModalityName" asp-items="Html.GetEnumSelectList<EnumModalityName>()">
+                    <option value="">-- Select a Modality Name --</option>
+                </select>
+                <span asp-validation-for="ModalityName" class="text-danger"></span>
+            </div>
+        }
+        @if (Model.ModalityPackage == EnumModalityPackage.TwoModalities)
+        {
+            <div class="form-group">
+                <label asp-for="ModalityName" class="control-label">First Modality Name</label>
+                <select asp-for="ModalityName" asp-items="Html.GetEnumSelectList<EnumModalityName>()">
+                    <option value="">-- Select First Modality Name --</option>
+                </select>
                 <span asp-validation-for="ModalityName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <label asp-for="SecondModalityName" class="control-label">Second Modality Name</label>
+                <select asp-for="SecondModalityName" asp-items="Html.GetEnumSelectList<EnumModalityName>()">
+                    <option value="">-- Select Second Modality Name --</option>
+                </select>
+                <span asp-validation-for="SecondModalityName" class="text-danger"></span>
             </div>
-        </form>
-    </div>
-</div>
+        }
+        else
+        {
+            <div class="form-group">
+                <label asp-for="ModalityName" class="control-label"></label>
+                <select asp-for="ModalityName" asp-items="Html.GetEnumSelectList<EnumModalityName>()">
+                    <option value="">-- Select a Modality Name --</option>
+                </select>
+                <span asp-validation-for="ModalityName" class="text-danger"></span>
+            </div>
+        }
+
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-primary" />
+        </div>
+    </form>
+}
 
 <div>
     <a asp-action="Index">Back to List</a>

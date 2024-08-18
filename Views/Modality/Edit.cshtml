@@ -1,4 +1,6 @@
 ﻿@model P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models.Modality
+﻿@using P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Enums
+
 
 @{
     ViewData["Title"] = "Edit";
@@ -13,16 +15,34 @@
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="ModalityId" />
-            <div class="form-group">
-                <label asp-for="ModalityName" class="control-label"></label>
-                <select asp-for="ModalityName" class="form-control"></select>
-                <span asp-validation-for="ModalityName" class="text-danger"></span>
-            </div>
+            
             <div class="form-group">
                 <label asp-for="ModalityPackage" class="control-label"></label>
-                <select asp-for="ModalityPackage" class="form-control"></select>
+                <select asp-for="ModalityPackage" asp-items="Html.GetEnumSelectList<EnumModalityPackage>()" class="form-control">
+                    <option value="">-- Select Modality Package --</option>
+                </select>
                 <span asp-validation-for="ModalityPackage" class="text-danger"></span>
             </div>
+            
+            <div class="form-group">
+                <label asp-for="ModalityName" class="control-label">First Modality Name</label>
+                <select asp-for="ModalityName" asp-items="ViewBag.ModalityNames" class="form-control">
+                    <option value="">-- Select First Modality Name --</option>
+                </select>
+                <span asp-validation-for="ModalityName" class="text-danger"></span>
+            </div>
+            
+            @if (Model.ModalityPackage == EnumModalityPackage.TwoModalities)
+            {
+                <div class="form-group">
+                    <label asp-for="SecondModalityName" class="control-label">Second Modality Name</label>
+                    <select asp-for="SecondModalityName" asp-items="ViewBag.ModalityNames" class="form-control">
+                        <option value="">-- Select Second Modality Name --</option>
+                    </select>
+                    <span asp-validation-for="SecondModalityName" class="text-danger"></span>
+                </div>
+            }
+            
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>

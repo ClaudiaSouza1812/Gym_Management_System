@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.DAL;
 
@@ -11,13 +12,14 @@ using P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.DAL;
 namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Migrations
 {
     [DbContext(typeof(CA_RS11_P2_2_ClaudiaSouza_DBContext))]
-    partial class CA_RS11_P2_2_ClaudiaSouza_DBContextModelSnapshot : ModelSnapshot
+    [Migration("20240818134736_08_ChangeContractModalityInputToPackage")]
+    partial class _08_ChangeContractModalityInputToPackage
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.33")
+                .HasAnnotation("ProductVersion", "6.0.32")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -171,10 +173,13 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Migrations
                     b.Property<int>("ContractId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ModalityId")
+                    b.Property<int>("ModalityPackage")
                         .HasColumnType("int");
 
-                    b.HasKey("ContractId", "ModalityId");
+                    b.Property<int?>("ModalityId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ContractId", "ModalityPackage");
 
                     b.HasIndex("ModalityId");
 
@@ -280,15 +285,11 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models.Modality", "Modality")
+                    b.HasOne("P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models.Modality", null)
                         .WithMany("ContractModalities")
-                        .HasForeignKey("ModalityId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ModalityId");
 
                     b.Navigation("Contract");
-
-                    b.Navigation("Modality");
                 });
 
             modelBuilder.Entity("P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models.Payment", b =>

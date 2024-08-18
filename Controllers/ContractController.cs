@@ -54,6 +54,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
         {
             ViewData["ClientId"] = new SelectList(_context.Client, "Id", "FullName");
             ViewData["MembershipId"] = new SelectList(_context.Membership, "MembershipId", "MembershipType");
+            ViewData["Modalities"] = new MultiSelectList(_context.Modality, "ModalityId", "ModalityName");
             return View();
         }
 
@@ -62,28 +63,38 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ContractId,ClientId,MembershipId,StartDate,EndDate")] Contract contract)
+        public async Task<IActionResult> Create([Bind("ContractId,ClientId,MembershipId,StartDate,EndDate,SelectedModalityPackage")] Contract contract)
         {
+            if (contract.SelectedModalityPackage == null)
+            {
+                ModelState.Remove("SelectedModalityIds");
+            }
+
             if (ModelState.IsValid)
             {
-                if (await _contractService.CheckExistingContract(contract.ClientId))
+                _context.Add(contract);
+                await _context.SaveChangesAsync();
+
+                // Get all modalities that match the selected package
+                var modalities = await _context.Modality
+                    .Where(m => m.ModalityPackage == contract.SelectedModalityPackage)
+                    .ToListAsync();
+
+                foreach (var modality in modalities)
                 {
-                    if (await _contractService.CheckContractValidity(contract.ClientId, contract.StartDate))
+                    var contractModality = new ContractModality
                     {
-                        ModelState.AddModelError("ClientId", "There is a contract still in force with this customer ID");
-
-                        ViewData["ClientId"] = new SelectList(_context.Client, "Id", "FullName", contract.ClientId);
-                        ViewData["MembershipId"] = new SelectList(_context.Membership, "MembershipId", "MembershipType", contract.MembershipId);
-                        return View(contract);
-                    }
+                        ContractId = contract.ContractId,
+                        ModalityId = modality.ModalityId
+                    };
+                    _context.ContractModality.Add(contractModality);
                 }
+                await _context.SaveChangesAsync();
 
-                await _contractService.CreateContract(contract);
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ClientId"] = new SelectList(_context.Client, "Id", "FullName", contract.ClientId);
-            ViewData["MembershipId"] = new SelectList(_context.Membership, "MembershipId", "MembershipType", contract.MembershipId);
-
+            ViewData["ClientId"] = new SelectList(_context.Client, "Id", "Name", contract.ClientId);
+            ViewData["MembershipId"] = new SelectList(_context.Membership, "Id", "Name", contract.MembershipId);
             return View(contract);
         }
 
@@ -100,7 +111,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
             {
                 return NotFound();
             }
-            ViewData["ClientId"] = new SelectList(_context.Client, "Id", "Email", contract.ClientId);
+            ViewData["ClientId"] = new SelectList(_context.Client, "Id", "Id", contract.ClientId);
             ViewData["MembershipId"] = new SelectList(_context.Membership, "MembershipId", "MembershipId", contract.MembershipId);
             return View(contract);
         }

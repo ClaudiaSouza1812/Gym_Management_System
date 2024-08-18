@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.DAL;
 
@@ -11,13 +12,14 @@ using P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.DAL;
 namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Migrations
 {
     [DbContext(typeof(CA_RS11_P2_2_ClaudiaSouza_DBContext))]
-    partial class CA_RS11_P2_2_ClaudiaSouza_DBContextModelSnapshot : ModelSnapshot
+    [Migration("20240818122853_07_ChangeEnumModalityName")]
+    partial class _07_ChangeEnumModalityName
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.33")
+                .HasAnnotation("ProductVersion", "6.0.32")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);

@@ -25,6 +25,9 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
         [EnumDataType(typeof(EnumModalityPackage))]
         public EnumModalityPackage ModalityPackage { get; set; }
 
+        [NotMapped]
+        public string? SecondModalityName { get; set; }
+
         #endregion
 
         #region Navigation Properties
