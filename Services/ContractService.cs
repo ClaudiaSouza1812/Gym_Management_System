@@ -7,7 +7,6 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Services
 {
     public class ContractService : IContractService
     {
-
         private readonly CA_RS11_P2_2_ClaudiaSouza_DBContext _context;
 
         public ContractService(CA_RS11_P2_2_ClaudiaSouza_DBContext context)
@@ -34,16 +33,13 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Services
 
         public async Task CreateContractWithModalityPackage(Contract contract)
         {
-            // Create the contract
             _context.Contract.Add(contract);
-            await _context.SaveChangesAsync(); // Save the contract first to get the ContractId
+            await _context.SaveChangesAsync();
 
-            // Fetch all modalities that match the selected package
             var modalities = await _context.Modality
                 .Where(m => m.ModalityPackage == contract.SelectedModalityPackage)
                 .ToListAsync();
 
-            // Associate each modality with the contract
             foreach (var modality in modalities)
             {
                 var contractModality = new ContractModality
@@ -53,8 +49,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Services
                 };
                 _context.ContractModality.Add(contractModality);
             }
-
-            await _context.SaveChangesAsync(); // Save the changes for ContractModalities
+            await _context.SaveChangesAsync(); 
         }
     }
 }

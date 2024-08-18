@@ -9,7 +9,6 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
     public class Payment : IPayment
     {
         #region Scalar Properties
-
         [Key]
         [DisplayName("Payment Id")]
         public int PaymentId { get; set; }
@@ -33,22 +32,18 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
 
         [Column(TypeName = "decimal(6,2)")]
         [DisplayName("Payment Value")]
-        public decimal PaymentTotalValue { get; set; } = 4;
-
+        public decimal PaymentTotalValue { get; set; } = 12;
         #endregion
 
-
         #region Navigation Properties
-
         public virtual Contract? Contract {  get; set; }
-
         #endregion
 
         #region Constructors
 
         public Payment()
         {
-            PaymentTotalValue = 4;
+            PaymentTotalValue = 12;
         }
 
         public Payment(decimal paymentBaseValue,  decimal paymentBaseRate, decimal paymentTotalValue, DateTime paymentDate)
@@ -58,8 +53,6 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
             PaymentDate = paymentDate;
             PaymentTotalValue = paymentTotalValue;
         }
-
         #endregion
-
     }
 }

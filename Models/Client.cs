@@ -10,7 +10,6 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
 {
     public class Client : Person, IClient
     {
-        
         #region Scalar Properties
 
         [Required(ErrorMessage = "The field 'Status' is mandatory.")]
@@ -55,6 +54,5 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
         }
 
         #endregion
-
     }
 }

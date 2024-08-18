@@ -6,30 +6,21 @@ using P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models;
 
 namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Services
 {
-    // SolId Principle: Open Closed
-    // Reason: This class is open for extension but closed for modification
     public class PaymentService : IPaymentService
     {
-
         #region Fields
-        // SolId Principle: Dependency Inversion
-        // Reason: The constructor is receiving an interface and not a concrete class as a parameter
         private readonly CA_RS11_P2_2_ClaudiaSouza_DBContext _context;
-
         #endregion
 
         #region Constructor
-
         public PaymentService(CA_RS11_P2_2_ClaudiaSouza_DBContext context)
         {
             _context = context;
 
         }
-
         #endregion
 
         #region Methods and Functions
-
         public decimal ComputePayment(IPayment payment, IClient client)
         {
             if (client == null)
@@ -63,8 +54,6 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Services
         {
             return payment.PaymentBaseValue * 3;
         }
-
         #endregion
-
     }
 }
