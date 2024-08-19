@@ -75,7 +75,6 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
                 _context.Add(contract);
                 await _context.SaveChangesAsync();
 
-                // Get all modalities that match the selected package
                 var modalities = await _context.Modality
                     .Where(m => m.ModalityPackage == contract.SelectedModalityPackage)
                     .ToListAsync();

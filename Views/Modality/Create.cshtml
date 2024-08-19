@@ -17,7 +17,7 @@
     </div>
 </form>
 
-@if (Model.ModalityPackage != 0) // Assuming 0 is the default value for the enum
+@if (Model.ModalityPackage != 0)
 {
     <form asp-action="Create">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>

@@ -12,7 +12,6 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Services
         public ClientService(CA_RS11_P2_2_ClaudiaSouza_DBContext context)
         {
             _context = context;
-            
         }
 
         public async Task<bool> CheckExistentNif(string nif)
