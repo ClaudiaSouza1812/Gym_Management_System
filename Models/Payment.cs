@@ -44,6 +44,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models
         public Payment()
         {
             PaymentTotalValue = 12;
+            PaymentDate = DateTime.Now;
         }
 
         public Payment(decimal paymentBaseValue,  decimal paymentBaseRate, decimal paymentTotalValue, DateTime paymentDate)

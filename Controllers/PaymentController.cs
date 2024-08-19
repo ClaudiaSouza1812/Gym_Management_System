@@ -80,7 +80,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
             }
             else
             {
-                payment.PaymentTotalValue = 4;
+                payment.PaymentTotalValue = 12;
             }
 
             ViewData["ContractId"] = new SelectList(_context.Contract, "ContractId", "ContractId", payment.ContractId);
