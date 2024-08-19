@@ -102,8 +102,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.DAL
                 new Modality
                 {
                     ModalityId = 2,
-                    ModalityName = EnumModalityName.Swimming.ToString(),
-                    SecondModalityName = EnumModalityName.Bodybuilding.ToString(),
+                    ModalityName = $"{EnumModalityName.Swimming.ToString()}/{EnumModalityName.Bodybuilding.ToString()}",
                     ModalityPackage = EnumModalityPackage.TwoModalities
                 },
                 new Modality

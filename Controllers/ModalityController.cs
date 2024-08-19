@@ -51,7 +51,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
         {
             var model = new Modality
             {
-                ModalityPackage = EnumModalityPackage.OneModality // Set a default value
+                ModalityPackage = EnumModalityPackage.OneModality
             };
             return View(model);
         }
@@ -71,15 +71,11 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
         {
             if (!ModelState.IsValid)
             {
-                // Log or display ModelState errors
                 foreach (var modelState in ModelState.Values)
                 {
                     foreach (var error in modelState.Errors)
                     {
-                        // You can log this error or add it to a list to display
                         Console.WriteLine(error.ErrorMessage);
-                        // or if you're using a logger:
-                        // _logger.LogError(error.ErrorMessage);
                     }
                 }
             }
@@ -89,7 +85,6 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
                 {
                     case EnumModalityPackage.OneModality:
                     case EnumModalityPackage.AllInclusive:
-                        // Store the single modality name as a string
                         modality.ModalityName = ((EnumModalityName)Enum.Parse(typeof(EnumModalityName), modality.ModalityName)).ToString();
                         break;
                     case EnumModalityPackage.TwoModalities:
@@ -98,8 +93,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Controllers
                             ModelState.AddModelError("SecondModalityName", "Second Modality Name is required for Two Modalities package.");
                             return View(modality);
                         }
-                        // Combine both modality names as strings
-                        modality.ModalityName = $"{((EnumModalityName)Enum.Parse(typeof(EnumModalityName), modality.ModalityName))},{((EnumModalityName)Enum.Parse(typeof(EnumModalityName), modality.SecondModalityName))}";
+                        modality.ModalityName = $"{(EnumModalityName)Enum.Parse(typeof(EnumModalityName), modality.ModalityName)},{(EnumModalityName)Enum.Parse(typeof(EnumModalityName), modality.SecondModalityName)}";
                         break;
                 }
 
