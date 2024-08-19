@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Enums;
 using P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Models;
 
 namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.DAL
@@ -69,6 +70,47 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.DAL
                     Status = Enums.EnumClientStatus.Active,
                     PaymentType = Enums.EnumPaymentType.PerSession,
                     Loyal = false
+                });
+            modelBuilder.Entity<Membership>()
+                .HasData(
+                new Membership
+                {
+                    MembershipId = 1,
+                    MembershipType = "Monthly",
+                    DiscountPercentage = 0
+                },
+                new Membership
+                {
+                    MembershipId = 2,
+                    MembershipType = "Monthly Loyal",
+                    DiscountPercentage = 10
+                },
+                new Membership
+                {
+                    MembershipId = 3,
+                    MembershipType = "Per Session",
+                    DiscountPercentage = 0
+                });
+            modelBuilder.Entity<Modality>()
+                .HasData(
+                new Modality
+                {
+                    ModalityId = 1,
+                    ModalityName = EnumModalityName.Bodybuilding.ToString(),
+                    ModalityPackage = EnumModalityPackage.OneModality
+                },
+                new Modality
+                {
+                    ModalityId = 2,
+                    ModalityName = EnumModalityName.Swimming.ToString(),
+                    SecondModalityName = EnumModalityName.Bodybuilding.ToString(),
+                    ModalityPackage = EnumModalityPackage.TwoModalities
+                },
+                new Modality
+                {
+                    ModalityId = 3,
+                    ModalityName = EnumModalityName.AllModalities.ToString(),
+                    ModalityPackage = EnumModalityPackage.AllInclusive
                 });
         }
     }
