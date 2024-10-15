@@ -43,7 +43,7 @@ namespace P02_2_ASP.NET_Core_MVC_M01_ClaudiaSouza.Services
 
         public decimal CalculateMonthlyLoyalPayment(IPayment payment)
         {
-            decimal discount  = _context.Membership.Where(m => m.MembershipType == "MonthlyLoyalty").Select(m => m.DiscountPercentage).FirstOrDefault();
+            decimal discount  = _context.Membership.Where(m => m.MembershipType == "Monthly Loyal").Select(m => m.DiscountPercentage).FirstOrDefault();
 
             decimal totalValue = payment.PaymentBaseValue * payment.PaymentBaseRate;
             decimal totalDiscount = discount / 100 * totalValue;
